@@ -4,6 +4,7 @@
  */
 package controller;
 
+import Model.ThanhVien;
 import java.util.List;
 
 /**
@@ -11,6 +12,6 @@ import java.util.List;
  * @author Administrator
  */
 public interface Controller {
-    // sắp xếp các danh sách theo tên
-    <T> List<T> sortByName(List<T> list);
+    List<ThanhVien> readDataFromFile(String fileName);
+    void writeDataToFile(List<ThanhVien> students, String fileName);
 }
