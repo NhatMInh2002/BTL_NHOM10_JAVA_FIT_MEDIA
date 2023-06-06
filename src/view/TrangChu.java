@@ -12,6 +12,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private DefaultTableModel modelTV;
     private ControllerImp controller;
     
+    int dongchon = -1;
+    
+    
     public TrangChu() {
         
 //        ControllerImp file = new ControllerImp();
@@ -76,7 +79,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
         jButton19 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        bangNhanSu = new javax.swing.JTable();
+        bangTruyenThong = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -426,7 +429,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         jTabbedPane1.addTab("Quản Lý HĐ Hỗ Trợ Tin Học", jPanel4);
 
-        bangNhanSu.setModel(new javax.swing.table.DefaultTableModel(
+        bangTruyenThong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -434,7 +437,12 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 "Tên TV", "Vị trí", "Email", "SĐT", "Ban", "Tên HĐ", "Loại HĐ", "Địa điểm", "Thời gian ", "Chi Phí"
             }
         ));
-        jScrollPane3.setViewportView(bangNhanSu);
+        bangTruyenThong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bangTruyenThongMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(bangTruyenThong);
 
         jLabel1.setText("Tổng thành viên :");
 
@@ -511,7 +519,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Quản Lý HĐ Nhân Sự", jPanel5);
+        jTabbedPane1.addTab("Quản Lý HĐ Truyền Thông", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -554,7 +562,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        new AddNhanSu(this, rootPaneCheckingEnabled).setVisible(true);
+        new AddTruyenThong(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnSuaThanhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThanhVienActionPerformed
@@ -579,8 +587,17 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        new EditNhanSu(this, rootPaneCheckingEnabled).setVisible(true);
+        new EditTruyenThong(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void bangTruyenThongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bangTruyenThongMouseClicked
+        // Sự kiện này xảy ra khi người dùng di chuột chọn dòng cần thao tác
+        dongchon = bangTruyenThong.getSelectedRow();
+        if(dongchon != -1){
+            
+            
+        }
+    }//GEN-LAST:event_bangTruyenThongMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -615,7 +632,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable bangNhanSu;
+    private javax.swing.JTable bangTruyenThong;
     private javax.swing.JButton btnSuaThanhVien;
     private javax.swing.JButton btnThemTV;
     private javax.swing.JButton btnXoaThanhVien;
@@ -702,7 +719,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
     }
 
     @Override
-    public <T> void showDataNhanSu(List<T> list, DefaultTableModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public <T> void showDataTruyenThong(List<T> list, DefaultTableModel model) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
