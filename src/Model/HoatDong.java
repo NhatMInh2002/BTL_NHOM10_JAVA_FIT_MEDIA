@@ -19,11 +19,11 @@ public class HoatDong implements Serializable{
     private double kinhPhi;
     private String diaDiem;
     private String moTa;
-
+    private String danhGia;
     public HoatDong() {
     }
 
-    public HoatDong(String maHD, String tenHD, String loaiHD, String thoiGian, int soThanhVien, double kinhPhi, String diaDiem, String moTa) {
+    public HoatDong(String maHD, String tenHD, String loaiHD, String thoiGian, int soThanhVien, double kinhPhi, String diaDiem, String moTa,String danhGia) {
         this.maHD = maHD;
         this.tenHD = tenHD;
         this.loaiHD = loaiHD;
@@ -32,6 +32,7 @@ public class HoatDong implements Serializable{
         this.kinhPhi = kinhPhi;
         this.diaDiem = diaDiem;
         this.moTa = moTa;
+        this.danhGia = danhGia;
     }
     
 
@@ -62,7 +63,9 @@ public class HoatDong implements Serializable{
     public String getMoTa() {
         return moTa;
     }
-
+    public String getDanhGia(){
+        return danhGia;
+    }
     public void setMaHD(String maHD){
         this.maHD = maHD;
     }
@@ -99,4 +102,9 @@ public class HoatDong implements Serializable{
     public void setMoTa(String moTa) {
         this.moTa = moTa;
     }
+
+    public void setDanhGia(String danhGia) {
+        this.danhGia = danhGia;
+    }
+
 }

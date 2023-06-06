@@ -15,7 +15,7 @@ public class EditDaoTao extends javax.swing.JDialog {
     ArrayList<HoatDong> dsHDDT = new ArrayList<HoatDong>();
     HoatDong x;
     Quy z;
-    
+
     public EditDaoTao(java.awt.Frame parent, boolean modal, int vt) {
         super(parent, modal);
         initComponents();
@@ -24,8 +24,8 @@ public class EditDaoTao extends javax.swing.JDialog {
         vitri = vt;
         setDefaultData();
     }
-    
-    public void setDefaultData(){
+
+    public void setDefaultData() {
         layFileHD();
         x = dsHDDT.get(vitri);
         txtTenHD.setText(x.getTenHD());
@@ -35,18 +35,17 @@ public class EditDaoTao extends javax.swing.JDialog {
         txtSoLuongTV.setText("" + x.getSoThanhVien());
         txtKinhPhi.setText("" + x.getKinhPhi());
     }
-    
-        public void layFileHD(){
+
+    public void layFileHD() {
         FileInputStream fi;
         ObjectInputStream in;
-        try{
+        try {
             fi = new FileInputStream("hd.txt");
             in = new ObjectInputStream(fi);
-            dsHDDT = (ArrayList<HoatDong>)in.readObject();
+            dsHDDT = (ArrayList<HoatDong>) in.readObject();
             fi.close();
             in.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
