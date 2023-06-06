@@ -1,8 +1,11 @@
 package view;
 
+import Model.HoatDong;
+import javax.swing.JOptionPane;
+
 public class AddTruyenThong extends javax.swing.JDialog {
 
-    private TrangChu home;
+    private final TrangChu home;
 
     public AddTruyenThong(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -10,62 +13,49 @@ public class AddTruyenThong extends javax.swing.JDialog {
         home = (TrangChu) parent;
         this.setLocationRelativeTo(null);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txttenTV = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        txtSDT = new javax.swing.JTextField();
-        Ban = new javax.swing.JComboBox<>();
-        txtchucDanh = new javax.swing.JComboBox<>();
-        txtTenHD = new javax.swing.JTextField();
-        LoaiHDCB = new javax.swing.JComboBox<>();
+        txtmoTa = new javax.swing.JTextField();
+        txtdanhGia = new javax.swing.JTextField();
+        txtSLTV = new javax.swing.JTextField();
         txtdiaDiem = new javax.swing.JTextField();
         txtthoiGian = new javax.swing.JTextField();
         txtchiPhi = new javax.swing.JTextField();
         ThemBtn = new javax.swing.JButton();
         HuyBobtn = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+
+        jLabel2.setText("tham gia :");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("FORM THÊM HOẠT ĐỘNG NHÂN SỰ _ NHẬT MINH");
+        setTitle("FORM THÊM");
 
-        jLabel1.setText("Tên TV:");
+        jLabel1.setText("Tên sự kiện:");
 
-        jLabel2.setText("Chức danh:");
+        jLabel3.setText("Mô tả:");
 
-        jLabel3.setText("Email:");
+        jLabel4.setText("Đánh giá:");
 
-        jLabel4.setText("SĐT:");
-
-        jLabel5.setText("Ban:");
-
-        jLabel6.setText("Tên HĐ:");
-
-        jLabel7.setText("Loại HĐ:");
+        jLabel6.setText("Số lượng thành viên");
 
         jLabel8.setText("Địa điểm :");
 
         jLabel9.setText("Thời gian:");
 
         jLabel10.setText("Chi phí:");
-
-        Ban.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ban biên tập", "Ban kỹ thuật", "Ban tổ chức sự kiện" }));
-
-        txtchucDanh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trưởng ban", "Phó ban", "Thành viên" }));
-
-        LoaiHDCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hỗ trợ tin học ", "Đào tạo", " " }));
 
         ThemBtn.setText("Thêm");
         ThemBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +73,9 @@ public class AddTruyenThong extends javax.swing.JDialog {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("THÊM MỚI NHÂN SỰ CHO HOẠT ĐỘNG");
+        jLabel11.setText("THÊM MỚI SỰ KIỆN - TRUYỀN THÔNG");
+
+        jLabel5.setText("tham gia :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,51 +87,41 @@ public class AddTruyenThong extends javax.swing.JDialog {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txttenTV)
-                            .addComponent(txtEmail)
-                            .addComponent(txtSDT)
-                            .addComponent(Ban, 0, 201, Short.MAX_VALUE)
-                            .addComponent(txtchucDanh, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                            .addComponent(txttenTV, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(txtmoTa)
+                            .addComponent(txtdanhGia))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(LoaiHDCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtTenHD, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtSLTV, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(HuyBobtn)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtthoiGian)
-                                    .addComponent(txtdiaDiem)
-                                    .addComponent(txtchiPhi)))))
+                                    .addComponent(txtdiaDiem, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtthoiGian, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtchiPhi, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(175, 175, 175)
-                        .addComponent(ThemBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(ThemBtn)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Ban, txtEmail, txtSDT, txtchucDanh, txttenTV});
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {LoaiHDCB, txtTenHD, txtchiPhi, txtdiaDiem, txtthoiGian});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtSLTV, txtchiPhi, txtdiaDiem, txtthoiGian});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,39 +133,33 @@ public class AddTruyenThong extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jLabel6)
                     .addComponent(txttenTV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTenHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel7)
-                    .addComponent(txtchucDanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LoaiHDCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel8)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtdiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(txtSLTV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel8)
+                            .addComponent(txtdiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(txtthoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtmoTa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel9)
-                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtthoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(txtdanhGia, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(Ban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtchiPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ThemBtn)
                     .addComponent(HuyBobtn))
                 .addGap(26, 26, 26))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Ban, txtEmail, txtSDT, txtchucDanh, txttenTV});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -195,9 +171,35 @@ public class AddTruyenThong extends javax.swing.JDialog {
 
     private void ThemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemBtnActionPerformed
         // Khi nhấn vào nút này thì cập nhật dữ liệu về nhân sự vào bảng Nhân sự ở Trang Chủ
-        
-        
-        
+        String ten = txtSLTV.getText();
+        String soluong = txtSLTV.getText();
+        String diaDiem = txtdiaDiem.getText();
+        String thoiGian = txtthoiGian.getText();
+        String chiPhi = txtchiPhi.getText();
+        String moTa = txtmoTa.getText();
+        String danhGia = txtdanhGia.getText();
+
+        boolean flag = true;
+        if (ten.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        } else if (soluong.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        } else if (diaDiem.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        } else if (thoiGian.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        } else if (chiPhi.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        }
+        if (flag) {
+//            HoatDong hd= new HoatDong(ma, ten, khoa, chuyenNghanh, ban, ngay, gioiTinh, gmail, sdt, chucDanh);
+            
+        }
     }//GEN-LAST:event_ThemBtnActionPerformed
 
     public static void main(String args[]) {
@@ -239,9 +241,7 @@ public class AddTruyenThong extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Ban;
     private javax.swing.JButton HuyBobtn;
-    private javax.swing.JComboBox<String> LoaiHDCB;
     private javax.swing.JButton ThemBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -251,15 +251,13 @@ public class AddTruyenThong extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtSDT;
-    private javax.swing.JTextField txtTenHD;
+    private javax.swing.JTextField txtSLTV;
     private javax.swing.JTextField txtchiPhi;
-    private javax.swing.JComboBox<String> txtchucDanh;
+    private javax.swing.JTextField txtdanhGia;
     private javax.swing.JTextField txtdiaDiem;
+    private javax.swing.JTextField txtmoTa;
     private javax.swing.JTextField txttenTV;
     private javax.swing.JTextField txtthoiGian;
     // End of variables declaration//GEN-END:variables
