@@ -87,8 +87,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
-
         tblThanhVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -439,8 +437,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
         jScrollPane3.setViewportView(jTable3);
 
         jLabel1.setText("Tổng thành viên :");
-
-        jTextField1.setText("jTextField1");
 
         jLabel2.setText("Tổng chi phí :");
 
