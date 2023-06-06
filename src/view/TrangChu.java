@@ -62,6 +62,11 @@ public class TrangChu extends javax.swing.JFrame implements View{
         showDataHDDT(listHD, modelHDDT);
         luuFileHD(listHD);
     }
+    public void editHD(HoatDong a, int vt){
+        listHD.set(vt, a);
+        showDataHDDT(listHD, modelHDDT);
+        luuFileHD(listHD);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -92,12 +97,12 @@ public class TrangChu extends javax.swing.JFrame implements View{
         jScrollPane4 = new javax.swing.JScrollPane();
         tblHDDT = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtThanhVienHDDT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtChiPhiHDDT = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        XoaHDDTbtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
@@ -317,11 +322,11 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         jLabel3.setText("Tổng số lượng thành viên :");
 
-        jTextField3.setText("jTextField3");
+        txtThanhVienHDDT.setText("jTextField3");
 
         jLabel4.setText("Tổng chi phí:");
 
-        jTextField4.setText("jTextField4");
+        txtChiPhiHDDT.setText("jTextField4");
 
         jButton7.setText("Thêm");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -337,7 +342,12 @@ public class TrangChu extends javax.swing.JFrame implements View{
             }
         });
 
-        jButton9.setText("Xoá");
+        XoaHDDTbtn.setText("Xoá");
+        XoaHDDTbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XoaHDDTbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -355,16 +365,16 @@ public class TrangChu extends javax.swing.JFrame implements View{
                         .addGap(108, 108, 108)
                         .addComponent(jButton8)
                         .addGap(134, 134, 134)
-                        .addComponent(jButton9))
+                        .addComponent(XoaHDDTbtn))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtThanhVienHDDT, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
                         .addComponent(jLabel4)))
                 .addGap(30, 30, 30)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtChiPhiHDDT, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
         jPanel3Layout.setVerticalGroup(
@@ -375,14 +385,14 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtThanhVienHDDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtChiPhiHDDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7)
                     .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(XoaHDDTbtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -614,8 +624,8 @@ public class TrangChu extends javax.swing.JFrame implements View{
     }//GEN-LAST:event_editCSVCbtnActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        new EditDaoTao(this, rootPaneCheckingEnabled).setVisible(true);
+        int vitri = tblHDDT.getSelectedRow();
+        new EditDaoTao(this, rootPaneCheckingEnabled, vitri).setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
@@ -645,6 +655,13 @@ public class TrangChu extends javax.swing.JFrame implements View{
         showDataCSVC(listCSVC, modelCSVC);
         luuFile(listCSVC);
     }//GEN-LAST:event_XoaCSVCbtnActionPerformed
+
+    private void XoaHDDTbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XoaHDDTbtnActionPerformed
+        int vitri = tblHDDT.getSelectedRow();
+        listHD.remove(vitri);
+        showDataHDDT(listHD, modelHDDT);
+        luuFileHD(listHD);
+    }//GEN-LAST:event_XoaHDDTbtnActionPerformed
 
     public void luuFile(List l){
         FileOutputStream fo;
@@ -738,6 +755,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton XoaCSVCbtn;
+    private javax.swing.JButton XoaHDDTbtn;
     private javax.swing.JButton btnSuaThanhVien;
     private javax.swing.JButton btnThemTV;
     private javax.swing.JButton btnXoaThanhVien;
@@ -751,7 +769,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel18;
@@ -778,8 +795,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JTable jTable6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
@@ -787,6 +802,8 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JTable tblCSVC;
     private javax.swing.JTable tblHDDT;
     private javax.swing.JTable tblThanhVien;
+    private javax.swing.JTextField txtChiPhiHDDT;
+    private javax.swing.JTextField txtThanhVienHDDT;
     private javax.swing.JTextField txtTongThanhVien;
     // End of variables declaration//GEN-END:variables
 
@@ -842,6 +859,27 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
     @Override
     public <T> void showDataHDDT(List<T> list, DefaultTableModel model) {
-        
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (T t : list) {
+            if (t instanceof HoatDong) {
+                HoatDong a = (HoatDong) t;
+                if(a.getLoaiHD().equalsIgnoreCase("Hoat dong dao tao")){
+                    model.addRow(new Object[]{
+                        a.getTenHD(), a.getThoiGian(), a.getDiaDiem(), a.getMoTa(), a.getSoThanhVien(), a.getKinhPhi()
+                    });
+                }
+            }
+        }
+        int SoThanhVien = 0;
+        double TongChiPhi = 0;
+        for(var x : listHD){
+            if(x.getLoaiHD().equalsIgnoreCase("Hoat dong dao tao")){
+                SoThanhVien += x.getSoThanhVien();
+                TongChiPhi += x.getKinhPhi();
+            }
+        }
+        txtThanhVienHDDT.setText("" + SoThanhVien);
+        txtChiPhiHDDT.setText("" + TongChiPhi);
     }
 }
