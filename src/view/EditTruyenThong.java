@@ -1,5 +1,7 @@
 package view;
 
+import javax.swing.JOptionPane;
+
 public class EditTruyenThong extends javax.swing.JDialog {
 
     private TrangChu home;
@@ -24,9 +26,9 @@ public class EditTruyenThong extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txttenTV = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        txtSDT = new javax.swing.JTextField();
-        txttenHD = new javax.swing.JTextField();
+        txtmoTa = new javax.swing.JTextField();
+        txtdanhGia = new javax.swing.JTextField();
+        txtSLTV = new javax.swing.JTextField();
         txtdiaDiem = new javax.swing.JTextField();
         txtthoiGian = new javax.swing.JTextField();
         txtchiPhi = new javax.swing.JTextField();
@@ -40,7 +42,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
         jLabel11.setText("THÊM MỚI NHÂN SỰ CHO HOẠT ĐỘNG");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("FORM SỬA HOẠT ĐỘNG NHÂN SỰ");
+        setTitle("FORM SỬA ");
 
         jLabel1.setText("Tên sự kiện");
 
@@ -57,6 +59,11 @@ public class EditTruyenThong extends javax.swing.JDialog {
         jLabel10.setText("Chi phí:");
 
         SuaBtn.setText("Sửa");
+        SuaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SuaBtnActionPerformed(evt);
+            }
+        });
 
         HuyBoBtn.setText("Huỷ bỏ");
         HuyBoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +74,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
 
         jLabel12.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("SỬA NHÂN SỰ CHO HOẠT ĐỘNG");
+        jLabel12.setText("SỬA ĐỔI SỰ KIỆN- TRUYỀN THÔNG");
 
         jLabel2.setText("tham gia :");
 
@@ -87,14 +94,14 @@ public class EditTruyenThong extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txttenTV, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                            .addComponent(txtEmail)
-                            .addComponent(txtSDT))
+                            .addComponent(txtmoTa)
+                            .addComponent(txtdanhGia))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addComponent(txttenHD, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtSLTV, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +125,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
                 .addGap(258, 258, 258))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtchiPhi, txtdiaDiem, txttenHD, txtthoiGian});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtSLTV, txtchiPhi, txtdiaDiem, txtthoiGian});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {HuyBoBtn, SuaBtn});
 
@@ -132,7 +139,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jLabel6)
                     .addComponent(txttenTV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txttenHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSLTV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -149,7 +156,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
                                     .addComponent(txtthoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(29, 29, 29))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtmoTa, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -158,7 +165,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
                                     .addComponent(txtchiPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtSDT, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
+                            .addComponent(txtdanhGia, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(SuaBtn)
@@ -169,7 +176,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtchiPhi, txtdiaDiem, txttenHD, txtthoiGian});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtSLTV, txtchiPhi, txtdiaDiem, txtthoiGian});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {HuyBoBtn, SuaBtn});
 
@@ -180,6 +187,39 @@ public class EditTruyenThong extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_HuyBoBtnActionPerformed
+
+    private void SuaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuaBtnActionPerformed
+        // TODO add your handling code here:
+        String ten = txtSLTV.getText();
+        String soluong = txtSLTV.getText();
+        String diaDiem = txtdiaDiem.getText();
+        String thoiGian = txtthoiGian.getText();
+        String chiPhi = txtchiPhi.getText();
+        String moTa = txtmoTa.getText();
+        String danhGia = txtdanhGia.getText();
+
+        boolean flag = true;
+        if (ten.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        } else if (soluong.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        } else if (diaDiem.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        } else if (thoiGian.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        } else if (chiPhi.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            flag = false;
+        }
+//        if (flag) {
+//           HoatDong hd= new HoatDong(ma, ten, khoa, chuyenNghanh, ban, ngay, gioiTinh, gmail, sdt, chucDanh);
+//
+//        }
+    }//GEN-LAST:event_SuaBtnActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -236,11 +276,11 @@ public class EditTruyenThong extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtSDT;
+    private javax.swing.JTextField txtSLTV;
     private javax.swing.JTextField txtchiPhi;
+    private javax.swing.JTextField txtdanhGia;
     private javax.swing.JTextField txtdiaDiem;
-    private javax.swing.JTextField txttenHD;
+    private javax.swing.JTextField txtmoTa;
     private javax.swing.JTextField txttenTV;
     private javax.swing.JTextField txtthoiGian;
     // End of variables declaration//GEN-END:variables

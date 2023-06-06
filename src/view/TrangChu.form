@@ -758,8 +758,8 @@
         <Container class="javax.swing.JPanel" name="jPanel5">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Qu&#x1ea3;n L&#xfd; H&#x110; Nh&#xe2;n S&#x1ef1;">
-                <Property name="tabTitle" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; H&#x110; Nh&#xe2;n S&#x1ef1;"/>
+              <JTabbedPaneConstraints tabName="Qu&#x1ea3;n L&#xfd; H&#x110; Truy&#x1ec1;n Th&#xf4;ng">
+                <Property name="tabTitle" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; H&#x110; Truy&#x1ec1;n Th&#xf4;ng"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -832,36 +832,18 @@
                 <Component class="javax.swing.JTable" name="jTable3">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="10" rowCount="0">
-                        <Column editable="true" title="T&#xea;n TV" type="java.lang.Object"/>
-                        <Column editable="true" title="V&#x1ecb; tr&#xed;" type="java.lang.Object"/>
-                        <Column editable="true" title="Email" type="java.lang.Object"/>
-                        <Column editable="true" title="S&#x110;T" type="java.lang.Object"/>
-                        <Column editable="true" title="Ban" type="java.lang.Object"/>
-                        <Column editable="true" title="T&#xea;n H&#x110;" type="java.lang.Object"/>
-                        <Column editable="true" title="Lo&#x1ea1;i H&#x110;" type="java.lang.Object"/>
+                      <Table columnCount="7" rowCount="0">
+                        <Column editable="true" title="T&#xea;n s&#x1ef1; ki&#x1ec7;n" type="java.lang.Object"/>
+                        <Column editable="true" title="&#x110;&#xe1;nh gi&#xe1;" type="java.lang.Object"/>
+                        <Column editable="true" title="M&#xf4; t&#x1ea3;" type="java.lang.Object"/>
+                        <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng th&#xe0;nh vi&#xea;n" type="java.lang.Object"/>
                         <Column editable="true" title="&#x110;&#x1ecb;a &#x111;i&#x1ec3;m" type="java.lang.Object"/>
                         <Column editable="true" title="Th&#x1edd;i gian " type="java.lang.Object"/>
                         <Column editable="true" title="Chi Ph&#xed;" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
+                      <TableColumnModel selectionModel="1">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -899,6 +881,7 @@
                         </Column>
                       </TableColumnModel>
                     </Property>
+                    <Property name="columnSelectionAllowed" type="boolean" value="true"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
@@ -919,9 +902,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jTextField2"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>

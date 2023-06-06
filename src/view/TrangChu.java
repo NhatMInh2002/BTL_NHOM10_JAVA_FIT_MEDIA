@@ -431,16 +431,16 @@ public class TrangChu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Tên TV", "Vị trí", "Email", "SĐT", "Ban", "Tên HĐ", "Loại HĐ", "Địa điểm", "Thời gian ", "Chi Phí"
+                "Tên sự kiện", "Đánh giá", "Mô tả", "Số lượng thành viên", "Địa điểm", "Thời gian ", "Chi Phí"
             }
         ));
+        jTable3.setColumnSelectionAllowed(true);
         jScrollPane3.setViewportView(jTable3);
+        jTable3.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel1.setText("Tổng thành viên :");
 
         jLabel2.setText("Tổng chi phí :");
-
-        jTextField2.setText("jTextField2");
 
         jButton4.setText("Thêm");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -511,7 +511,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Quản Lý HĐ Nhân Sự", jPanel5);
+        jTabbedPane1.addTab("Quản Lý HĐ Truyền Thông", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
