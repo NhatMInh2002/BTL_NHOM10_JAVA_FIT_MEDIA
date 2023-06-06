@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Administrator
+ * @author Bravo 15
  */
 public class HoatDong implements Serializable{
     private String maHD;
