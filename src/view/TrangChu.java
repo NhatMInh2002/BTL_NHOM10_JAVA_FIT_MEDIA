@@ -76,7 +76,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
         jButton19 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        bangNhanSu = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -426,7 +426,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         jTabbedPane1.addTab("Quản Lý HĐ Hỗ Trợ Tin Học", jPanel4);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        bangNhanSu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -434,7 +434,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 "Tên TV", "Vị trí", "Email", "SĐT", "Ban", "Tên HĐ", "Loại HĐ", "Địa điểm", "Thời gian ", "Chi Phí"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(bangNhanSu);
 
         jLabel1.setText("Tổng thành viên :");
 
@@ -615,6 +615,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable bangNhanSu;
     private javax.swing.JButton btnSuaThanhVien;
     private javax.swing.JButton btnThemTV;
     private javax.swing.JButton btnXoaThanhVien;
@@ -652,7 +653,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;

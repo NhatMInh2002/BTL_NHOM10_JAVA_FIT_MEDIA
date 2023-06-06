@@ -43,7 +43,7 @@
                           <Component id="Ban" linkSize="1" pref="201" max="32767" attributes="0"/>
                           <Component id="viTri" linkSize="1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
@@ -143,7 +143,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="V&#x1ecb; tr&#xed; :"/>
+        <Property name="text" type="java.lang.String" value="Ch&#x1ee9;c danh:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -245,7 +245,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="ThemBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ho&#xe0;n t&#x1ea5;t"/>
+        <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ThemBtnActionPerformed"/>

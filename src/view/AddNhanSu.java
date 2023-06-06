@@ -43,7 +43,7 @@ public class AddNhanSu extends javax.swing.JDialog {
 
         jLabel1.setText("Tên TV:");
 
-        jLabel2.setText("Vị trí :");
+        jLabel2.setText("Chức danh:");
 
         jLabel3.setText("Email:");
 
@@ -67,7 +67,7 @@ public class AddNhanSu extends javax.swing.JDialog {
 
         LoaiHDCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hỗ trợ tin học ", "Đào tạo", "Tổ chức sự kiện", "Sinh hoạt" }));
 
-        ThemBtn.setText("Hoàn tất");
+        ThemBtn.setText("Thêm");
         ThemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ThemBtnActionPerformed(evt);
@@ -106,7 +106,7 @@ public class AddNhanSu extends javax.swing.JDialog {
                             .addComponent(SDT)
                             .addComponent(Ban, 0, 201, Short.MAX_VALUE)
                             .addComponent(viTri, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
@@ -194,7 +194,9 @@ public class AddNhanSu extends javax.swing.JDialog {
     }//GEN-LAST:event_HuyBobtnActionPerformed
 
     private void ThemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemBtnActionPerformed
-        // TODO add your handling code here:
+        // Khi nhấn vào nút này thì cập nhật dữ liệu về nhân sự vào bảng Nhân sự ở Trang Chủ
+        
+        
         
     }//GEN-LAST:event_ThemBtnActionPerformed
 
