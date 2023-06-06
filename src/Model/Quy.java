@@ -54,5 +54,4 @@ public class Quy {
     public static void setTongQuy(double tongQuy) {
         Quy.tongQuy = tongQuy;
     }
-    
 }

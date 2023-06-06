@@ -70,5 +70,4 @@ public class CoSoVC implements Serializable{
     public void setChiPhi(double ChiPhi) {
         this.ChiPhi = ChiPhi;
     }
-    
 }

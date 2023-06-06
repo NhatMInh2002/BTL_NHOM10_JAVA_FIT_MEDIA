@@ -99,5 +99,4 @@ public class HoatDong implements Serializable{
     public void setMoTa(String moTa) {
         this.moTa = moTa;
     }
-    
 }
