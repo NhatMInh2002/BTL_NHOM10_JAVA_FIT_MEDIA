@@ -35,7 +35,6 @@
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
       <Events>
-        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="jTabbedPane1AncestorAdded"/>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTabbedPane1MouseClicked"/>
       </Events>
 
@@ -65,7 +64,7 @@
                                       <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
                                       <Component id="btnThemTV" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
-                                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnSuaThanhVien" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
                                       <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -104,7 +103,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnThemTV" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSuaThanhVien" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="11" max="32767" attributes="0"/>
                   </Group>
@@ -147,12 +146,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemTVActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="btnSuaThanhVien">
               <Properties>
                 <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaThanhVienActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton3">
@@ -203,14 +202,14 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnThemCSVC" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton10" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                              <Component id="editCSVC" min="-2" max="-2" attributes="0"/>
+                              <Component id="editCSVCbtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnxoaCSVC" min="-2" max="-2" attributes="0"/>
+                          <Component id="XoaCSVCbtn" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField6" min="-2" pref="188" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -231,9 +230,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnThemCSVC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="editCSVC" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnxoaCSVC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="editCSVCbtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="XoaCSVCbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   </Group>
@@ -315,28 +314,28 @@
                 <Property name="text" type="java.lang.String" value="jTextField6"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnThemCSVC">
+            <Component class="javax.swing.JButton" name="jButton10">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemCSVCActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="editCSVC">
+            <Component class="javax.swing.JButton" name="editCSVCbtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editCSVCActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editCSVCbtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnxoaCSVC">
+            <Component class="javax.swing.JButton" name="XoaCSVCbtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Xo&#xe1;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnxoaCSVCActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="XoaCSVCbtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -362,11 +361,11 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnThemHDDT" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                              <Component id="btnSuaHDDT" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
-                              <Component id="btnXoaHDDT" min="-2" max="-2" attributes="0"/>
+                              <Component id="XoaHDDTbtn" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
@@ -397,9 +396,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnThemHDDT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnSuaHDDT" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnXoaHDDT" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="XoaHDDTbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -481,28 +480,28 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtChiPhiHDDT">
             </Component>
-            <Component class="javax.swing.JButton" name="btnThemHDDT">
+            <Component class="javax.swing.JButton" name="jButton7">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemHDDTActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnSuaHDDT">
+            <Component class="javax.swing.JButton" name="jButton8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaHDDTActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnXoaHDDT">
+            <Component class="javax.swing.JButton" name="XoaHDDTbtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Xo&#xe1;"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaHDDTActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="XoaHDDTbtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

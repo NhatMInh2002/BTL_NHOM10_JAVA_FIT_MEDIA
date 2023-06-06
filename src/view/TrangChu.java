@@ -79,7 +79,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         btnThemTV = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnSuaThanhVien = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -91,9 +91,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
         jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
-        btnThemCSVC = new javax.swing.JButton();
-        editCSVC = new javax.swing.JButton();
-        btnxoaCSVC = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        editCSVCbtn = new javax.swing.JButton();
+        XoaCSVCbtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblHDDT = new javax.swing.JTable();
@@ -101,9 +101,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
         txtThanhVienHDDT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtChiPhiHDDT = new javax.swing.JTextField();
-        btnThemHDDT = new javax.swing.JButton();
-        btnSuaHDDT = new javax.swing.JButton();
-        btnXoaHDDT = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        XoaHDDTbtn = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -127,15 +127,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jTabbedPane1AncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseClicked(evt);
@@ -162,10 +153,10 @@ public class TrangChu extends javax.swing.JFrame implements View{
             }
         });
 
-        jButton2.setText("Sửa");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSuaThanhVien.setText("Sửa");
+        btnSuaThanhVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSuaThanhVienActionPerformed(evt);
             }
         });
 
@@ -190,7 +181,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
                                 .addGap(282, 282, 282)
                                 .addComponent(btnThemTV)
                                 .addGap(119, 119, 119)
-                                .addComponent(jButton2)
+                                .addComponent(btnSuaThanhVien)
                                 .addGap(166, 166, 166)
                                 .addComponent(jButton3))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -220,7 +211,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThemTV)
                     .addComponent(jButton3)
-                    .addComponent(jButton2))
+                    .addComponent(btnSuaThanhVien))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -244,24 +235,24 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         jTextField6.setText("jTextField6");
 
-        btnThemCSVC.setText("Thêm");
-        btnThemCSVC.addActionListener(new java.awt.event.ActionListener() {
+        jButton10.setText("Thêm");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemCSVCActionPerformed(evt);
+                jButton10ActionPerformed(evt);
             }
         });
 
-        editCSVC.setText("Sửa");
-        editCSVC.addActionListener(new java.awt.event.ActionListener() {
+        editCSVCbtn.setText("Sửa");
+        editCSVCbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCSVCActionPerformed(evt);
+                editCSVCbtnActionPerformed(evt);
             }
         });
 
-        btnxoaCSVC.setText("Xoá");
-        btnxoaCSVC.addActionListener(new java.awt.event.ActionListener() {
+        XoaCSVCbtn.setText("Xoá");
+        XoaCSVCbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnxoaCSVCActionPerformed(evt);
+                XoaCSVCbtnActionPerformed(evt);
             }
         });
 
@@ -284,12 +275,12 @@ public class TrangChu extends javax.swing.JFrame implements View{
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnThemCSVC)
+                        .addComponent(jButton10)
                         .addGap(116, 116, 116)
-                        .addComponent(editCSVC)
+                        .addComponent(editCSVCbtn)
                         .addGap(149, 149, 149)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnxoaCSVC)
+                    .addComponent(XoaCSVCbtn)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -306,9 +297,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThemCSVC)
-                    .addComponent(editCSVC)
-                    .addComponent(btnxoaCSVC))
+                    .addComponent(jButton10)
+                    .addComponent(editCSVCbtn)
+                    .addComponent(XoaCSVCbtn))
                 .addGap(52, 52, 52))
         );
 
@@ -328,24 +319,24 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         jLabel4.setText("Tổng chi phí:");
 
-        btnThemHDDT.setText("Thêm");
-        btnThemHDDT.addActionListener(new java.awt.event.ActionListener() {
+        jButton7.setText("Thêm");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemHDDTActionPerformed(evt);
+                jButton7ActionPerformed(evt);
             }
         });
 
-        btnSuaHDDT.setText("Sửa");
-        btnSuaHDDT.addActionListener(new java.awt.event.ActionListener() {
+        jButton8.setText("Sửa");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaHDDTActionPerformed(evt);
+                jButton8ActionPerformed(evt);
             }
         });
 
-        btnXoaHDDT.setText("Xoá");
-        btnXoaHDDT.addActionListener(new java.awt.event.ActionListener() {
+        XoaHDDTbtn.setText("Xoá");
+        XoaHDDTbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaHDDTActionPerformed(evt);
+                XoaHDDTbtnActionPerformed(evt);
             }
         });
 
@@ -361,11 +352,11 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnThemHDDT)
+                        .addComponent(jButton7)
                         .addGap(108, 108, 108)
-                        .addComponent(btnSuaHDDT)
+                        .addComponent(jButton8)
                         .addGap(134, 134, 134)
-                        .addComponent(btnXoaHDDT))
+                        .addComponent(XoaHDDTbtn))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jLabel3)
@@ -390,9 +381,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
                     .addComponent(txtChiPhiHDDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThemHDDT)
-                    .addComponent(btnSuaHDDT)
-                    .addComponent(btnXoaHDDT))
+                    .addComponent(jButton7)
+                    .addComponent(jButton8)
+                    .addComponent(XoaHDDTbtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -753,18 +744,18 @@ public class TrangChu extends javax.swing.JFrame implements View{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSuaHDDT;
-    private javax.swing.JButton btnThemCSVC;
-    private javax.swing.JButton btnThemHDDT;
+    private javax.swing.JButton XoaCSVCbtn;
+    private javax.swing.JButton XoaHDDTbtn;
+    private javax.swing.JButton btnSuaThanhVien;
     private javax.swing.JButton btnThemTV;
-    private javax.swing.JButton btnXoaHDDT;
-    private javax.swing.JButton btnxoaCSVC;
-    private javax.swing.JButton editCSVC;
+    private javax.swing.JButton editCSVCbtn;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
