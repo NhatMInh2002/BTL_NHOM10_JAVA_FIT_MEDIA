@@ -15,6 +15,7 @@ public class EditDaoTao extends javax.swing.JDialog {
     ArrayList<HoatDong> dsHDDT = new ArrayList<HoatDong>();
     HoatDong x;
     Quy z;
+    
     public EditDaoTao(java.awt.Frame parent, boolean modal, int vt) {
         super(parent, modal);
         initComponents();
@@ -22,32 +23,6 @@ public class EditDaoTao extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         vitri = vt;
         setDefaultData();
-    }
-    
-    public void setDefaultData(){
-        layFileHD();
-        x = dsHDDT.get(vitri);
-        txtTenHD.setText(x.getTenHD());
-        txtThoiGian.setText(x.getThoiGian());
-        txtDiaDiem.setText(x.getDiaDiem());
-        txtMoTa.setText(x.getMoTa());
-        txtSoLuongTV.setText("" + x.getSoThanhVien());
-        txtKinhPhi.setText("" + x.getKinhPhi());
-    }
-    
-        public void layFileHD(){
-        FileInputStream fi;
-        ObjectInputStream in;
-        try{
-            fi = new FileInputStream("hd.txt");
-            in = new ObjectInputStream(fi);
-            dsHDDT = (ArrayList<HoatDong>)in.readObject();
-            fi.close();
-            in.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -66,8 +41,8 @@ public class EditDaoTao extends javax.swing.JDialog {
         txtMoTa = new javax.swing.JTextField();
         txtSoLuongTV = new javax.swing.JTextField();
         txtKinhPhi = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnHoanTat = new javax.swing.JButton();
+        btnHuy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -83,17 +58,17 @@ public class EditDaoTao extends javax.swing.JDialog {
 
         jLabel6.setText("Kinh phí:");
 
-        jButton1.setText("Hoàn tất sửa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnHoanTat.setText("Hoàn tất sửa");
+        btnHoanTat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnHoanTatActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Huỷ bỏ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnHuy.setText("Huỷ bỏ");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnHuyActionPerformed(evt);
             }
         });
 
@@ -114,17 +89,17 @@ public class EditDaoTao extends javax.swing.JDialog {
                             .addComponent(jLabel6))
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTenHD, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                             .addComponent(txtThoiGian)
                             .addComponent(txtDiaDiem)
                             .addComponent(txtMoTa)
                             .addComponent(txtSoLuongTV)
-                            .addComponent(txtKinhPhi)))
+                            .addComponent(txtKinhPhi)
+                            .addComponent(txtTenHD, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
-                        .addComponent(jButton1)
+                        .addComponent(btnHoanTat)
                         .addGap(149, 149, 149)
-                        .addComponent(jButton2)))
+                        .addComponent(btnHuy)))
                 .addContainerGap(183, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -156,20 +131,20 @@ public class EditDaoTao extends javax.swing.JDialog {
                     .addComponent(txtKinhPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnHoanTat)
+                    .addComponent(btnHuy))
                 .addGap(57, 57, 57))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnHuyActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnHoanTatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanTatActionPerformed
         try {
             x.setTenHD(txtTenHD.getText());
             x.setDiaDiem(txtDiaDiem.getText());
@@ -178,12 +153,38 @@ public class EditDaoTao extends javax.swing.JDialog {
             x.setSoThanhVien(Integer.parseInt(txtSoLuongTV.getText()));
             x.setKinhPhi(Double.parseDouble(txtKinhPhi.getText()));
             //z.tongQuy -= Double.parseDouble(txtKinhPhi.getText());
-            home.editHD(x, vitri);
+            home.addHD(x);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnHoanTatActionPerformed
 
+    public void setDefaultData(){
+        layFileHD();
+        x = dsHDDT.get(vitri);
+        txtTenHD.setText(x.getTenHD());
+        txtThoiGian.setText(x.getThoiGian());
+        txtDiaDiem.setText(x.getDiaDiem());
+        txtMoTa.setText(x.getMoTa());
+        txtSoLuongTV.setText("" + x.getSoThanhVien());
+        txtKinhPhi.setText("" + x.getKinhPhi());
+    }
+    
+        public void layFileHD(){
+        FileInputStream fi;
+        ObjectInputStream in;
+        try{
+            fi = new FileInputStream("hd.txt");
+            in = new ObjectInputStream(fi);
+            dsHDDT = (ArrayList<HoatDong>)in.readObject();
+            fi.close();
+            in.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -225,8 +226,8 @@ public class EditDaoTao extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnHoanTat;
+    private javax.swing.JButton btnHuy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

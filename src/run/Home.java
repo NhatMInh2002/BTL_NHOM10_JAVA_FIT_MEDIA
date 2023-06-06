@@ -4,7 +4,6 @@
  */
 package run;
 
-import view.Login;
 import view.TrangChu;
 
 /**
@@ -13,8 +12,7 @@ import view.TrangChu;
  */
 public class Home {
     public static void main(String[] args) {
-        Login lg = new Login();
-        lg.setVisible(true);
-        lg.setLocationRelativeTo(null);
+        TrangChu home = new TrangChu();
+        home.setVisible(true);
     }
 }

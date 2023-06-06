@@ -36,7 +36,7 @@ public class AddDaoTao extends javax.swing.JDialog {
         txtSoLuongTV = new javax.swing.JTextField();
         txtKinhPhi = new javax.swing.JTextField();
         btnHoanTat = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnHuy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,10 +59,10 @@ public class AddDaoTao extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("Huỷ bỏ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnHuy.setText("Huỷ bỏ");
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnHuyActionPerformed(evt);
             }
         });
 
@@ -93,7 +93,7 @@ public class AddDaoTao extends javax.swing.JDialog {
                         .addGap(133, 133, 133)
                         .addComponent(btnHoanTat)
                         .addGap(149, 149, 149)
-                        .addComponent(jButton2)))
+                        .addComponent(btnHuy)))
                 .addContainerGap(204, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -126,17 +126,17 @@ public class AddDaoTao extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnHoanTat)
-                    .addComponent(jButton2))
+                    .addComponent(btnHuy))
                 .addGap(57, 57, 57))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnHoanTatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanTatActionPerformed
         HoatDong x = new HoatDong();
@@ -188,6 +188,7 @@ public class AddDaoTao extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 AddDaoTao dialog = new AddDaoTao(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -203,7 +204,7 @@ public class AddDaoTao extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHoanTat;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnHuy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -11,10 +11,6 @@ import java.util.List;
  * @author Administrator
  */
 public interface Controller {
-    //ghi file
-     <T> void wirteToFile (List<T> list , String fileName);
-     // đọc file
-     <T> List<T>  readDataFromFile(String fileName);
     // sắp xếp các danh sách theo tên
     <T> List<T> sortByName(List<T> list);
 }

@@ -10,12 +10,13 @@ import javax.swing.JOptionPane;
 public class EditCSVC extends javax.swing.JDialog {
 
     private TrangChu home;
+
     ArrayList<CoSoVC> dsCSVC = new ArrayList<CoSoVC>();
     CoSoVC x;
     Quy z;
     
     static int vitri;
-
+    
     public EditCSVC(java.awt.Frame parent, boolean modal, int vt) {
         super(parent, modal);
         initComponents();
@@ -23,31 +24,6 @@ public class EditCSVC extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         vitri = vt;
         setDefaultData();
-    }
-    
-    public void setDefaultData(){
-        layFileCSVC();
-        x = dsCSVC.get(vitri);
-        txtMa.setText(x.getMaCSVC());
-        txtTen.setText(x.getTenCSVC());
-        txtTrangThai.setText(x.getTrangThai());
-        txtSoLuong.setText("" + x.getSoLuong());
-        txtChiPhi.setText("" + x.getChiPhi());   
-    }
-    
-    public void layFileCSVC(){
-        FileInputStream fi;
-        ObjectInputStream in;
-        try{
-            fi = new FileInputStream("csvc.txt");
-            in = new ObjectInputStream(fi);
-            dsCSVC = (ArrayList<CoSoVC>)in.readObject();
-            fi.close();
-            in.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -64,7 +40,7 @@ public class EditCSVC extends javax.swing.JDialog {
         txtTrangThai = new javax.swing.JTextField();
         txtSoLuong = new javax.swing.JTextField();
         txtChiPhi = new javax.swing.JTextField();
-        HoanTatbtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -79,10 +55,10 @@ public class EditCSVC extends javax.swing.JDialog {
 
         jLabel5.setText("Chí phí:");
 
-        HoanTatbtn.setText("Hoàn tất sửa");
-        HoanTatbtn.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Hoàn tất sửa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HoanTatbtnActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -116,7 +92,7 @@ public class EditCSVC extends javax.swing.JDialog {
                             .addComponent(txtMa)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(119, 119, 119)
-                        .addComponent(HoanTatbtn)
+                        .addComponent(jButton1)
                         .addGap(93, 93, 93)
                         .addComponent(jButton2)))
                 .addContainerGap(164, Short.MAX_VALUE))
@@ -146,7 +122,7 @@ public class EditCSVC extends javax.swing.JDialog {
                     .addComponent(txtChiPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(HoanTatbtn)
+                    .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
@@ -154,12 +130,21 @@ public class EditCSVC extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setDefaultData(){
+        layFileCSVC();
+        x = dsCSVC.get(vitri);
+        txtMa.setText(x.getMaCSVC());
+        txtTen.setText(x.getTenCSVC());
+        txtTrangThai.setText(x.getTrangThai());
+        txtSoLuong.setText("" + x.getSoLuong());
+        txtChiPhi.setText("" + x.getChiPhi());   
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void HoanTatbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoanTatbtnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             x.setMaCSVC(txtMa.getText());
             x.setTenCSVC(txtTen.getText());
@@ -170,8 +155,23 @@ public class EditCSVC extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-    }//GEN-LAST:event_HoanTatbtnActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void layFileCSVC(){
+        FileInputStream fi;
+        ObjectInputStream in;
+        try{
+            fi = new FileInputStream("csvc.txt");
+            in = new ObjectInputStream(fi);
+            dsCSVC = (ArrayList<CoSoVC>)in.readObject();
+            fi.close();
+            in.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -213,7 +213,7 @@ public class EditCSVC extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton HoanTatbtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
