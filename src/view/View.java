@@ -13,8 +13,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public interface View {
     <T> void showDataThanhVien(List<T> list , DefaultTableModel model);
-//    <T> void showDataCSVC(List<T> list , DefaultTableModel model);
-//    <T> void showDataDaoTao(List<T> list , DefaultTableModel model);
+    <T> void showDataCSVC(List<T> list , DefaultTableModel model);
+    <T> void showDataHDDT(List<T> list , DefaultTableModel model);
 //    <T> void showDataTinHoc(List<T> list , DefaultTableModel model);
 //    <T> void showDataNhanSu(List<T> list , DefaultTableModel model);
 }
