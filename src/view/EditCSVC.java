@@ -1,14 +1,53 @@
 package view;
 
+import Model.CoSoVC;
+import Model.Quy;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class EditCSVC extends javax.swing.JDialog {
 
     private TrangChu home;
+    ArrayList<CoSoVC> dsCSVC = new ArrayList<CoSoVC>();
+    CoSoVC x;
+    Quy z;
+    
+    static int vitri;
 
-    public EditCSVC(java.awt.Frame parent, boolean modal) {
+    public EditCSVC(java.awt.Frame parent, boolean modal, int vt) {
         super(parent, modal);
         initComponents();
         home = (TrangChu) parent;
         this.setLocationRelativeTo(null);
+        vitri = vt;
+        setDefaultData();
+    }
+    
+    public void setDefaultData(){
+        layFileCSVC();
+        x = dsCSVC.get(vitri);
+        txtMa.setText(x.getMaCSVC());
+        txtTen.setText(x.getTenCSVC());
+        txtTrangThai.setText(x.getTrangThai());
+        txtSoLuong.setText("" + x.getSoLuong());
+        txtChiPhi.setText("" + x.getChiPhi());   
+    }
+    
+    public void layFileCSVC(){
+        FileInputStream fi;
+        ObjectInputStream in;
+        try{
+            fi = new FileInputStream("csvc.txt");
+            in = new ObjectInputStream(fi);
+            dsCSVC = (ArrayList<CoSoVC>)in.readObject();
+            fi.close();
+            in.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -20,12 +59,12 @@ public class EditCSVC extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtMa = new javax.swing.JTextField();
+        txtTen = new javax.swing.JTextField();
+        txtTrangThai = new javax.swing.JTextField();
+        txtSoLuong = new javax.swing.JTextField();
+        txtChiPhi = new javax.swing.JTextField();
+        HoanTatbtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -40,17 +79,12 @@ public class EditCSVC extends javax.swing.JDialog {
 
         jLabel5.setText("Chí phí:");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jButton1.setText("Hoàn tất sửa");
+        HoanTatbtn.setText("Hoàn tất sửa");
+        HoanTatbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HoanTatbtnActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Huỷ bỏ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -75,14 +109,14 @@ public class EditCSVC extends javax.swing.JDialog {
                             .addComponent(jLabel5))
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1)))
+                            .addComponent(txtChiPhi, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                            .addComponent(txtSoLuong)
+                            .addComponent(txtTrangThai)
+                            .addComponent(txtTen)
+                            .addComponent(txtMa)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(119, 119, 119)
-                        .addComponent(jButton1)
+                        .addComponent(HoanTatbtn)
                         .addGap(93, 93, 93)
                         .addComponent(jButton2)))
                 .addContainerGap(164, Short.MAX_VALUE))
@@ -93,26 +127,26 @@ public class EditCSVC extends javax.swing.JDialog {
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtChiPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(HoanTatbtn)
                     .addComponent(jButton2))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
@@ -124,6 +158,19 @@ public class EditCSVC extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void HoanTatbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoanTatbtnActionPerformed
+        try {
+            x.setMaCSVC(txtMa.getText());
+            x.setTenCSVC(txtTen.getText());
+            x.setTrangThai(txtTrangThai.getText());
+            x.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+            x.setChiPhi(Double.parseDouble(txtChiPhi.getText()));
+            home.editCSVC(x, vitri);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_HoanTatbtnActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -153,7 +200,7 @@ public class EditCSVC extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditCSVC dialog = new EditCSVC(new javax.swing.JFrame(), true);
+                EditCSVC dialog = new EditCSVC(new javax.swing.JFrame(), true, vitri);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -166,17 +213,17 @@ public class EditCSVC extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton HoanTatbtn;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txtChiPhi;
+    private javax.swing.JTextField txtMa;
+    private javax.swing.JTextField txtSoLuong;
+    private javax.swing.JTextField txtTen;
+    private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,8 +1,14 @@
 package view;
 
+import Model.CoSoVC;
+import Model.HoatDong;
 import Model.ThanhVien;
 import controller.ControllerImp;
 import java.awt.Graphics;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -11,6 +17,11 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private List<ThanhVien> listTV ;
     private DefaultTableModel modelTV;
     private ControllerImp controller;
+    
+    private List<CoSoVC> listCSVC;
+    private List<HoatDong> listHD;
+    private DefaultTableModel modelCSVC;
+    private DefaultTableModel modelHDDT;
     
     public TrangChu() {
         
@@ -22,6 +33,10 @@ public class TrangChu extends javax.swing.JFrame implements View{
         modelTV =(DefaultTableModel) tblThanhVien.getModel();
         controller = new ControllerImp();
         showTV();
+        listCSVC = new ArrayList<>();
+        listHD = new ArrayList<>();
+        modelCSVC = (DefaultTableModel) tblCSVC.getModel();
+        modelHDDT = (DefaultTableModel) tblHDDT.getModel();
     }
     public void addThanhVien(ThanhVien t){
         listTV.add(t);
@@ -29,6 +44,25 @@ public class TrangChu extends javax.swing.JFrame implements View{
         controller.wirteToFile(listTV,"TV.TXT");
         showTV();
     }
+    
+    public void addCSVC(CoSoVC cs){
+        layFileCSVC();
+        listCSVC.add(cs);
+        showDataCSVC(listCSVC, modelCSVC);
+        luuFile(listCSVC);
+    }
+    public void editCSVC(CoSoVC cs, int vt){
+        listCSVC.set(vt, cs);
+        showDataCSVC(listCSVC, modelCSVC);
+        luuFile(listCSVC);
+    }
+    public void addHD(HoatDong a){
+        layFileHD();
+        listHD.add(a);
+        showDataHDDT(listHD, modelHDDT);
+        luuFileHD(listHD);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -46,17 +80,17 @@ public class TrangChu extends javax.swing.JFrame implements View{
         jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
+        tblCSVC = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        editCSVCbtn = new javax.swing.JButton();
+        XoaCSVCbtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tblHDDT = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -87,7 +121,11 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         tblThanhVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -176,7 +214,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         jTabbedPane1.addTab("Quản Lý Thành Viên", jPanel1);
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        tblCSVC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -184,7 +222,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 "Mã thiết bị", "Tên thiết bị", "Trạng thái", "Số lượng", "Chi Phí CSVC"
             }
         ));
-        jScrollPane5.setViewportView(jTable5);
+        jScrollPane5.setViewportView(tblCSVC);
 
         jLabel5.setText("Tổng số lượng thiết bị:");
 
@@ -201,14 +239,19 @@ public class TrangChu extends javax.swing.JFrame implements View{
             }
         });
 
-        jButton11.setText("Sửa");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        editCSVCbtn.setText("Sửa");
+        editCSVCbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                editCSVCbtnActionPerformed(evt);
             }
         });
 
-        jButton12.setText("Xoá");
+        XoaCSVCbtn.setText("Xoá");
+        XoaCSVCbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                XoaCSVCbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -233,10 +276,10 @@ public class TrangChu extends javax.swing.JFrame implements View{
                                 .addContainerGap()
                                 .addComponent(jButton10)
                                 .addGap(116, 116, 116)
-                                .addComponent(jButton11)
+                                .addComponent(editCSVCbtn)
                                 .addGap(149, 149, 149)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton12)
+                            .addComponent(XoaCSVCbtn)
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 91, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -255,14 +298,14 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 .addGap(84, 84, 84)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12))
+                    .addComponent(editCSVCbtn)
+                    .addComponent(XoaCSVCbtn))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Quản Lý Cơ Sở Vật Chất", jPanel2);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tblHDDT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -270,7 +313,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 "Tên hoạt động", "Thời gian", "Địa điểm", "Mô tả ", "Số lượng thành viên", "Kinh Phí"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(tblHDDT);
 
         jLabel3.setText("Tổng số lượng thành viên :");
 
@@ -318,7 +361,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
                         .addComponent(jLabel4)))
                 .addGap(30, 30, 30)
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -536,7 +579,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
         new AddCSVC(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -566,10 +608,10 @@ public class TrangChu extends javax.swing.JFrame implements View{
         new EditThanhVien(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_btnSuaThanhVienActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        new EditCSVC(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void editCSVCbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCSVCbtnActionPerformed
+        int vitri = tblCSVC.getSelectedRow();
+        new EditCSVC(this, rootPaneCheckingEnabled, vitri).setVisible(true);
+    }//GEN-LAST:event_editCSVCbtnActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
@@ -586,6 +628,82 @@ public class TrangChu extends javax.swing.JFrame implements View{
         new EditNhanSu(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        if(jTabbedPane1.getSelectedIndex() == 1){
+            layFileCSVC();
+            showDataCSVC(listCSVC, modelCSVC);
+        }
+        if(jTabbedPane1.getSelectedIndex() == 2){
+            layFileHD();
+            showDataHDDT(listHD, modelHDDT);
+        }
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void XoaCSVCbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XoaCSVCbtnActionPerformed
+        int vitri = tblCSVC.getSelectedRow();
+        listCSVC.remove(vitri);
+        showDataCSVC(listCSVC, modelCSVC);
+        luuFile(listCSVC);
+    }//GEN-LAST:event_XoaCSVCbtnActionPerformed
+
+    public void luuFile(List l){
+        FileOutputStream fo;
+        ObjectOutputStream out;
+        try{
+            fo = new FileOutputStream("csvc.txt");
+            out = new ObjectOutputStream(fo);
+            out.writeObject(l);
+            out.close();
+            fo.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void luuFileHD(List l){
+        FileOutputStream fo;
+        ObjectOutputStream out;
+        try{
+            fo = new FileOutputStream("hd.txt");
+            out = new ObjectOutputStream(fo);
+            out.writeObject(l);
+            out.close();
+            fo.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void layFileCSVC(){
+        FileInputStream fi;
+        ObjectInputStream in;
+        try{
+            fi = new FileInputStream("csvc.txt");
+            in = new ObjectInputStream(fi);
+            listCSVC = (ArrayList<CoSoVC>)in.readObject();
+            fi.close();
+            in.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void layFileHD(){
+        FileInputStream fi;
+        ObjectInputStream in;
+        try{
+            fi = new FileInputStream("hd.txt");
+            in = new ObjectInputStream(fi);
+            listHD = (ArrayList<HoatDong>)in.readObject();
+            fi.close();
+            in.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -619,12 +737,12 @@ public class TrangChu extends javax.swing.JFrame implements View{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton XoaCSVCbtn;
     private javax.swing.JButton btnSuaThanhVien;
     private javax.swing.JButton btnThemTV;
     private javax.swing.JButton btnXoaThanhVien;
+    private javax.swing.JButton editCSVCbtn;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
@@ -657,8 +775,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -668,6 +784,8 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTable tblCSVC;
+    private javax.swing.JTable tblHDDT;
     private javax.swing.JTable tblThanhVien;
     private javax.swing.JTextField txtTongThanhVien;
     // End of variables declaration//GEN-END:variables
@@ -692,12 +810,24 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
     @Override
     public <T> void showDataCSVC(List<T> list, DefaultTableModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public <T> void showDataDaoTao(List<T> list, DefaultTableModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (T t : list) {
+            if (t instanceof CoSoVC) {
+                CoSoVC cs = (CoSoVC) t;
+                model.addRow(new Object[]{
+                    cs.getMaCSVC(), cs.getTenCSVC(), cs.getTrangThai(), cs.getSoLuong(), cs.getChiPhi()
+                });
+            }
+        }
+        int SoLuongCSVC = 0;
+        double TongChiPhi = 0;
+        for(var x : listCSVC){
+            SoLuongCSVC += x.getSoLuong();
+            TongChiPhi += x.getChiPhi();
+        }
+        jTextField5.setText("" + SoLuongCSVC);
+        jTextField6.setText("" + TongChiPhi);
     }
 
     @Override
@@ -708,5 +838,10 @@ public class TrangChu extends javax.swing.JFrame implements View{
     @Override
     public <T> void showDataNhanSu(List<T> list, DefaultTableModel model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public <T> void showDataHDDT(List<T> list, DefaultTableModel model) {
+        
     }
 }
