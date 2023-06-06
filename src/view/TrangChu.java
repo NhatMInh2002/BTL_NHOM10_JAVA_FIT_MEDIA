@@ -32,7 +32,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
         listTV = new ArrayList<>();
         modelTV =(DefaultTableModel) tblThanhVien.getModel();
         controller = new ControllerImp();
-        showTV();
+        //showTV();
         listCSVC = new ArrayList<>();
         listHD = new ArrayList<>();
         modelCSVC = (DefaultTableModel) tblCSVC.getModel();
@@ -41,8 +41,8 @@ public class TrangChu extends javax.swing.JFrame implements View{
     public void addThanhVien(ThanhVien t){
         listTV.add(t);
         showDataThanhVien(listTV, modelTV);
-        controller.wirteToFile(listTV,"TV.TXT");
-        showTV();
+        //controller.wirteToFile(listTV,"TV.TXT");
+        //showTV();
     }
     
     public void addCSVC(CoSoVC cs){
@@ -610,7 +610,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        new AddNhanSu(this, rootPaneCheckingEnabled).setVisible(true);
+        new AddTruyenThong(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnSuaThanhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThanhVienActionPerformed
@@ -807,10 +807,11 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JTextField txtTongThanhVien;
     // End of variables declaration//GEN-END:variables
 
-    private void showTV() {
-        listTV = controller.readDataFromFile("TV.TXT");
-        this.showDataThanhVien(listTV, modelTV);
-    }
+    //Loi lam lai chut nhe :>
+//    private void showTV() {
+//        listTV = controller.readDataFromFile("TV.TXT");
+//        this.showDataThanhVien(listTV, modelTV);
+//    }
 
     @Override
     public <T> void showDataThanhVien(List<T> list, DefaultTableModel model) {
@@ -852,10 +853,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    @Override
-    public <T> void showDataNhanSu(List<T> list, DefaultTableModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public <T> void showDataHDDT(List<T> list, DefaultTableModel model) {
@@ -881,5 +878,10 @@ public class TrangChu extends javax.swing.JFrame implements View{
         }
         txtThanhVienHDDT.setText("" + SoThanhVien);
         txtChiPhiHDDT.setText("" + TongChiPhi);
+    }
+
+    @Override
+    public <T> void showDataTruyenThong(List<T> list, DefaultTableModel model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
