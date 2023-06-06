@@ -555,7 +555,7 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        new AddNhanSu(this, rootPaneCheckingEnabled).setVisible(true);
+        new AddTruyenThong(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnSuaThanhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThanhVienActionPerformed
@@ -592,7 +592,7 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        new EditNhanSu(this, rootPaneCheckingEnabled).setVisible(true);
+        new EditTruyenThong(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnXoaThanhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaThanhVienActionPerformed
