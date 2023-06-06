@@ -1,16 +1,54 @@
 package view;
 
+import Model.HoatDong;
+import Model.Quy;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class EditTruyenThong extends javax.swing.JDialog {
 
     private TrangChu home;
+    static int vitri;
+    HoatDong tt = new HoatDong();
+    ArrayList<HoatDong> dsHDTT = new ArrayList<HoatDong>();
+    Quy q;
 
-    public EditTruyenThong(java.awt.Frame parent, boolean modal) {
+    public EditTruyenThong(JFrame parent, boolean modal, int vt) {
         super(parent, modal);
         initComponents();
         home = (TrangChu) parent;
         this.setLocationRelativeTo(null);
+        vitri = vt;
+        setDefaultData();
+    }
+
+    private void setDefaultData() {
+        layFileHDTT();
+        tt = dsHDTT.get(vitri);
+        txttenSK.setText(tt.getTenHD());
+        txtmoTa.setText(tt.getTenHD());
+        txtdanhGia.setText(tt.getTenHD());
+        txtSLTV.setText(tt.getTenHD());
+        txtdiaDiem.setText(tt.getDiaDiem());
+        txtthoiGian.setText(tt.getTenHD());
+        txtchiPhi.setText("" + tt.getTenHD());
+    }
+
+    public void layFileHDTT() {
+        FileInputStream fi;
+        ObjectInputStream in;
+        try {
+            fi = new FileInputStream("TruyenThong.txt");
+            in = new ObjectInputStream(fi);
+            dsHDTT = (ArrayList<HoatDong>) in.readObject();
+            fi.close();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -25,7 +63,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txttenTV = new javax.swing.JTextField();
+        txttenSK = new javax.swing.JTextField();
         txtmoTa = new javax.swing.JTextField();
         txtdanhGia = new javax.swing.JTextField();
         txtSLTV = new javax.swing.JTextField();
@@ -93,7 +131,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txttenTV, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(txttenSK, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                             .addComponent(txtmoTa)
                             .addComponent(txtdanhGia))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -138,7 +176,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel6)
-                    .addComponent(txttenTV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttenSK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSLTV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
                 .addComponent(jLabel2)
@@ -190,35 +228,38 @@ public class EditTruyenThong extends javax.swing.JDialog {
 
     private void SuaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuaBtnActionPerformed
         // TODO add your handling code here:
-        String ten = txtSLTV.getText();
-        String soluong = txtSLTV.getText();
-        String diaDiem = txtdiaDiem.getText();
-        String thoiGian = txtthoiGian.getText();
-        String chiPhi = txtchiPhi.getText();
-        String moTa = txtmoTa.getText();
-        String danhGia = txtdanhGia.getText();
+        try {
+            String ten = txtSLTV.getText();
+            String soluong = txtSLTV.getText();
+            String diaDiem = txtdiaDiem.getText();
+            String thoiGian = txtthoiGian.getText();
+            String chiPhi = txtchiPhi.getText();
+            String moTa = txtmoTa.getText();
+            String danhGia = txtdanhGia.getText();
 
-        boolean flag = true;
-        if (ten.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-            flag = false;
-        } else if (soluong.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-            flag = false;
-        } else if (diaDiem.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-            flag = false;
-        } else if (thoiGian.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-            flag = false;
-        } else if (chiPhi.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-            flag = false;
+            boolean flag = true;
+            if (ten.length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+                flag = false;
+            } else if (soluong.length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+                flag = false;
+            } else if (diaDiem.length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+                flag = false;
+            } else if (thoiGian.length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+                flag = false;
+            } else if (chiPhi.length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+                flag = false;
+            }
+            home.editHDTT(tt, vitri);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-//        if (flag) {
-//           HoatDong hd= new HoatDong(ma, ten, khoa, chuyenNghanh, ban, ngay, gioiTinh, gmail, sdt, chucDanh);
-//
-//        }
+
+
     }//GEN-LAST:event_SuaBtnActionPerformed
 
     public static void main(String args[]) {
@@ -251,7 +292,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditTruyenThong dialog = new EditTruyenThong(new javax.swing.JFrame(), true);
+                EditTruyenThong dialog = new EditTruyenThong(new javax.swing.JFrame(), true, vitri);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -281,7 +322,8 @@ public class EditTruyenThong extends javax.swing.JDialog {
     private javax.swing.JTextField txtdanhGia;
     private javax.swing.JTextField txtdiaDiem;
     private javax.swing.JTextField txtmoTa;
-    private javax.swing.JTextField txttenTV;
+    private javax.swing.JTextField txttenSK;
     private javax.swing.JTextField txtthoiGian;
     // End of variables declaration//GEN-END:variables
+
 }

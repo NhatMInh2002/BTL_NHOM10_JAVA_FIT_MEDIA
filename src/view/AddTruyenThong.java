@@ -4,13 +4,14 @@ import Model.HoatDong;
 import Model.Quy;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import static view.EditTruyenThong.vitri;
 
 public class AddTruyenThong extends javax.swing.JDialog {
 
     private TrangChu home;
     ArrayList<HoatDong> dsHDTT = new ArrayList<HoatDong>();
     Quy z;
-    HoatDong tt = new HoatDong();
+    HoatDong tt;
 
     public AddTruyenThong(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -92,59 +93,63 @@ public class AddTruyenThong extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(340, Short.MAX_VALUE)
-                .addComponent(HuyBobtn)
-                .addGap(209, 209, 209))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(175, 175, 175)
-                .addComponent(ThemBtn)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(ThemBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(289, 289, 289)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(298, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(HuyBobtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(179, 179, 179))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(306, 306, 306)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(248, 248, 248))
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txttenSK, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                        .addComponent(txtmoTa)
+                        .addComponent(txtDG))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
+                            .addComponent(jLabel6)
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txttenSK, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                .addComponent(txtmoTa)
-                                .addComponent(txtDG))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtSL))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addGap(61, 61, 61)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtSL, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGap(61, 61, 61)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtthoiGian)
-                                        .addComponent(txtdiaDiem)
-                                        .addComponent(txtchiPhi))))))
+                                .addComponent(txtthoiGian, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                                .addComponent(txtdiaDiem)
+                                .addComponent(txtchiPhi))))
                     .addContainerGap()))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {HuyBobtn, ThemBtn});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ThemBtn)
                     .addComponent(HuyBobtn))
@@ -157,9 +162,7 @@ public class AddTruyenThong extends javax.swing.JDialog {
                         .addComponent(jLabel6)
                         .addComponent(txttenSK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtSL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(1, 1, 1)
-                    .addComponent(jLabel2)
-                    .addGap(18, 18, 18)
+                    .addGap(32, 32, 32)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,17 +202,64 @@ public class AddTruyenThong extends javax.swing.JDialog {
 
     private void ThemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemBtnActionPerformed
         // Khi nhấn vào nút này thì cập nhật dữ liệu về nhân sự vào bảng Nhân sự ở Trang Chủ
-        try {
-            tt.setTenHD(txttenSK.getText());
-            tt.setDiaDiem(txtdiaDiem.getText());
-            tt.setThoiGian(txtthoiGian.getText());
-            tt.setMoTa(txtmoTa.getText());
-            tt.setDanhGia(txtDG.getText());
-            tt.setSoThanhVien(Integer.parseInt(txtSL.getText()));
-            tt.setKinhPhi(Double.parseDouble(txtchiPhi.getText()));
+//        String ten = txttenSK.getText();
+//        int soluong = Integer.parseInt(txtSL.getText());
+//        String diaDiem = txtdiaDiem.getText();
+//        String thoiGian = txtthoiGian.getText();
+//        double chiPhi = Double.parseDouble(txtchiPhi.getText());
+//        String moTa = txtmoTa.getText();
+//        String danhGia = txtDG.getText();
+//        String maHD;
+//        String loaiHD = "Hoat dong Truyen Thong";
+//            if(dsHDTT.isEmpty()){
+//                maHD = "HD1";
+//            }
+//            else{
+//                maHD = "HD" + (dsHDTT.size() + 1);
+//            }
+//
+//        boolean flag = true;
+//        if (ten.trim().length() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+//            flag = false;
+//        } else if (soluong == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+//            flag = false;
+//        } else if (diaDiem.trim().length() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+//            flag = false;
+//        } else if (thoiGian.trim().length() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+//            flag = false;
+//        } else if (chiPhi == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+//            flag = false;
+//        }
+//        if(flag){
+//            tt = new HoatDong(maHD, ten, loaiHD, thoiGian, soluong, chiPhi, diaDiem, moTa, danhGia);
 //            home.addTT(tt);
+//        }
+        HoatDong x = new HoatDong();
+        try {
+            if(dsHDTT.isEmpty()){
+                x.setMaHD("HD1");
+            }
+            else{
+                String ma = "HD" + (dsHDTT.size() + 1);
+                x.setMaHD(ma);
+            }
+            x.setTenHD(txttenSK.getText());
+            x.setLoaiHD("Hoat dong dao tao");
+            x.setDiaDiem(txtdiaDiem.getText());
+            x.setThoiGian(txtthoiGian.getText());
+            x.setMoTa(txtmoTa.getText());
+            x.setSoThanhVien(Integer.parseInt(txtSL.getText()));
+            x.setKinhPhi(Double.parseDouble(txtchiPhi.getText()));
+            x.setDanhGia(txtDG.getText());
+            //z.tongQuy -= Double.parseDouble(txtKinhPhi.getText());
+            home.addHD(x);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_ThemBtnActionPerformed
 

@@ -10,22 +10,24 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class TrangChu extends javax.swing.JFrame implements View{
+public class TrangChu extends javax.swing.JFrame implements View {
 
     List<ThanhVien> listTV;
     private DefaultTableModel modelTV;
     private controller.ControllerImp controller;
     private int indexThanhVien;
-    
+
     private List<CoSoVC> listCSVC;
     private List<HoatDong> listHD;
+    private List<HoatDong> listHDTT;
     private DefaultTableModel modelCSVC;
     private DefaultTableModel modelHDDT;
-
+    private DefaultTableModel modelHDTT;
 
     public TrangChu() {
         initComponents();
@@ -36,34 +38,11 @@ public class TrangChu extends javax.swing.JFrame implements View{
         loadDataFromFile("TV.txt");
         listCSVC = new ArrayList<>();
         listHD = new ArrayList<>();
+        listHDTT = new ArrayList<>();
         modelCSVC = (DefaultTableModel) tblCSVC.getModel();
         modelHDDT = (DefaultTableModel) tblHDDT.getModel();
-
+        modelHDTT = (DefaultTableModel) tblTT.getModel();
     }
-    
-    public void addCSVC(CoSoVC cs){
-        layFileCSVC();
-        listCSVC.add(cs);
-        showDataCSVC(listCSVC, modelCSVC);
-        luuFile(listCSVC);
-    }
-    public void editCSVC(CoSoVC cs, int vt){
-        listCSVC.set(vt, cs);
-        showDataCSVC(listCSVC, modelCSVC);
-        luuFile(listCSVC);
-    }
-    public void addHD(HoatDong a){
-        layFileHD();
-        listHD.add(a);
-        showDataHDDT(listHD, modelHDDT);
-        luuFileHD(listHD);
-    }
-    public void editHD(HoatDong a, int vt){
-        listHD.set(vt, a);
-        showDataHDDT(listHD, modelHDDT);
-        luuFileHD(listHD);
-    }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -87,9 +66,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
         jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        themCSVC = new javax.swing.JButton();
+        suaCSVC = new javax.swing.JButton();
+        xoaCSVC = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblHDDT = new javax.swing.JTable();
@@ -97,9 +76,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
         txtThanhVienHDDT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtChiPhiHDDT = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        themDT = new javax.swing.JButton();
+        suaDT = new javax.swing.JButton();
+        xoaDT = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
@@ -112,14 +91,14 @@ public class TrangChu extends javax.swing.JFrame implements View{
         jButton19 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tblTT = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        themTT = new javax.swing.JButton();
+        suaTT = new javax.swing.JButton();
+        xoaTT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,24 +218,24 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         jTextField6.setText("jTextField6");
 
-        jButton10.setText("Thêm");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        themCSVC.setText("Thêm");
+        themCSVC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                themCSVCActionPerformed(evt);
             }
         });
 
-        jButton11.setText("Sửa");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        suaCSVC.setText("Sửa");
+        suaCSVC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                suaCSVCActionPerformed(evt);
             }
         });
 
-        jButton12.setText("Xoá");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        xoaCSVC.setText("Xoá");
+        xoaCSVC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                xoaCSVCActionPerformed(evt);
             }
         });
 
@@ -281,12 +260,12 @@ public class TrangChu extends javax.swing.JFrame implements View{
                                 .addGap(18, 18, 18))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jButton10)
+                                .addComponent(themCSVC)
                                 .addGap(116, 116, 116)
-                                .addComponent(jButton11)
+                                .addComponent(suaCSVC)
                                 .addGap(149, 149, 149)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton12)
+                            .addComponent(xoaCSVC)
                             .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 91, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -304,9 +283,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12))
+                    .addComponent(themCSVC)
+                    .addComponent(suaCSVC)
+                    .addComponent(xoaCSVC))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -330,24 +309,24 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         txtChiPhiHDDT.setText("jTextField4");
 
-        jButton7.setText("Thêm");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        themDT.setText("Thêm");
+        themDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                themDTActionPerformed(evt);
             }
         });
 
-        jButton8.setText("Sửa");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        suaDT.setText("Sửa");
+        suaDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                suaDTActionPerformed(evt);
             }
         });
 
-        jButton9.setText("Xoá");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        xoaDT.setText("Xoá");
+        xoaDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                xoaDTActionPerformed(evt);
             }
         });
 
@@ -363,11 +342,11 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7)
+                        .addComponent(themDT)
                         .addGap(108, 108, 108)
-                        .addComponent(jButton8)
+                        .addComponent(suaDT)
                         .addGap(134, 134, 134)
-                        .addComponent(jButton9))
+                        .addComponent(xoaDT))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jLabel3)
@@ -392,9 +371,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
                     .addComponent(txtChiPhiHDDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(themDT)
+                    .addComponent(suaDT)
+                    .addComponent(xoaDT))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -483,7 +462,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
         jTabbedPane1.addTab("Quản Lý HĐ Hỗ Trợ Tin Học", jPanel4);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tblTT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -491,32 +470,32 @@ public class TrangChu extends javax.swing.JFrame implements View{
                 "Tên sự kiện", "Đánh giá", "Mô tả", "Số lượng thành viên", "Địa điểm", "Thời gian ", "Chi Phí"
             }
         ));
-        jTable3.setColumnSelectionAllowed(true);
-        jScrollPane3.setViewportView(jTable3);
-        jTable3.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblTT.setColumnSelectionAllowed(true);
+        jScrollPane3.setViewportView(tblTT);
+        tblTT.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel1.setText("Tổng thành viên :");
 
         jLabel2.setText("Tổng chi phí :");
 
-        jButton4.setText("Thêm");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        themTT.setText("Thêm");
+        themTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                themTTActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Sửa");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        suaTT.setText("Sửa");
+        suaTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                suaTTActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Xoá");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        xoaTT.setText("Xoá");
+        xoaTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                xoaTTActionPerformed(evt);
             }
         });
 
@@ -542,11 +521,11 @@ public class TrangChu extends javax.swing.JFrame implements View{
                         .addGap(40, 40, 40))))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(345, 345, 345)
-                .addComponent(jButton4)
+                .addComponent(themTT)
                 .addGap(128, 128, 128)
-                .addComponent(jButton5)
+                .addComponent(suaTT)
                 .addGap(132, 132, 132)
-                .addComponent(jButton6)
+                .addComponent(xoaTT)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -562,9 +541,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5))
+                    .addComponent(themTT)
+                    .addComponent(xoaTT)
+                    .addComponent(suaTT))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -584,14 +563,10 @@ public class TrangChu extends javax.swing.JFrame implements View{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void themCSVCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themCSVCActionPerformed
         // TODO add your handling code here:
         new AddCSVC(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_themCSVCActionPerformed
 
     private void btnThemTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTVActionPerformed
         // TODO add your handling code here:
@@ -600,20 +575,20 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
     }//GEN-LAST:event_btnThemTVActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void themDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themDTActionPerformed
         // TODO add your handling code here:
         new AddDaoTao(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_themDTActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
         new AddHoTroTinHoc(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton17ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void themTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themTTActionPerformed
         // TODO add your handling code here:
         new AddTruyenThong(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_themTTActionPerformed
 
     private void btnSuaThanhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaThanhVienActionPerformed
         // TODO add your handling code here:
@@ -632,25 +607,34 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
     }//GEN-LAST:event_btnSuaThanhVienActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void suaCSVCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaCSVCActionPerformed
         int vitri = tblCSVC.getSelectedRow();
         new EditCSVC(this, rootPaneCheckingEnabled, vitri).setVisible(true);
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_suaCSVCActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void suaDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaDTActionPerformed
         int vitri = tblHDDT.getSelectedRow();
         new EditDaoTao(this, rootPaneCheckingEnabled, vitri).setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_suaDTActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         new EditHoTroTinHoc(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void suaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaTTActionPerformed
         // TODO add your handling code here:
-        new EditTruyenThong(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+        int vitri = tblTT.getSelectedRow();
+        if (listHD.size() == 0) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Hãy nhập thêm thành viên");
+        } else if (indexThanhVien == -1) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Hãy chọn thành viên rồi chỉnh sửa !");
+        } else {
+            new EditTruyenThong(this, rootPaneCheckingEnabled, vitri).setVisible(true);
+        }
+    }//GEN-LAST:event_suaTTActionPerformed
 
     private void btnXoaThanhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaThanhVienActionPerformed
         // TODO add your handling code here:
@@ -667,29 +651,41 @@ public class TrangChu extends javax.swing.JFrame implements View{
     }//GEN-LAST:event_btnXoaThanhVienActionPerformed
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        if(jTabbedPane1.getSelectedIndex() == 1){
+        if (jTabbedPane1.getSelectedIndex() == 1) {
             layFileCSVC();
             showDataCSVC(listCSVC, modelCSVC);
         }
-        if(jTabbedPane1.getSelectedIndex() == 2){
+        if (jTabbedPane1.getSelectedIndex() == 2) {
             layFileHD();
             showDataHDDT(listHD, modelHDDT);
         }
+        if (jTabbedPane1.getSelectedIndex() == 4) {
+            LayFileTT();
+            showDataTruyenThong(listHDTT, modelHDTT);
+        }
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void xoaCSVCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaCSVCActionPerformed
         int vitri = tblCSVC.getSelectedRow();
         listCSVC.remove(vitri);
         showDataCSVC(listCSVC, modelCSVC);
         luuFile(listCSVC);
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_xoaCSVCActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void xoaDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaDTActionPerformed
         int vitri = tblHDDT.getSelectedRow();
         listHD.remove(vitri);
         showDataHDDT(listHD, modelHDDT);
         luuFileHD(listHD);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_xoaDTActionPerformed
+
+    private void xoaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaTTActionPerformed
+        // TODO add your handling code here:
+        int vitri = tblTT.getSelectedRow();
+        listHD.remove(vitri);
+        showDataHDDT(listHD, modelHDDT);
+        luuFileHD(listHD);
+    }//GEN-LAST:event_xoaTTActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -722,18 +718,9 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JButton btnSuaThanhVien;
     private javax.swing.JButton btnThemTV;
     private javax.swing.JButton btnXoaThanhVien;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel18;
@@ -756,7 +743,6 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
@@ -764,12 +750,22 @@ public class TrangChu extends javax.swing.JFrame implements View{
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JButton suaCSVC;
+    private javax.swing.JButton suaDT;
+    private javax.swing.JButton suaTT;
     private javax.swing.JTable tblCSVC;
     private javax.swing.JTable tblHDDT;
+    private javax.swing.JTable tblTT;
     private javax.swing.JTable tblThanhVien;
+    private javax.swing.JButton themCSVC;
+    private javax.swing.JButton themDT;
+    private javax.swing.JButton themTT;
     private javax.swing.JTextField txtChiPhiHDDT;
     private javax.swing.JTextField txtThanhVienHDDT;
     private javax.swing.JTextField txtTongThanhVien;
+    private javax.swing.JButton xoaCSVC;
+    private javax.swing.JButton xoaDT;
+    private javax.swing.JButton xoaTT;
     // End of variables declaration//GEN-END:variables
 
     private void showDataThanhVien() {
@@ -788,9 +784,48 @@ public class TrangChu extends javax.swing.JFrame implements View{
         showDataThanhVien();
     }
 
+    public void addCSVC(CoSoVC cs) {
+        layFileCSVC();
+        listCSVC.add(cs);
+        showDataCSVC(listCSVC, modelCSVC);
+        luuFile(listCSVC);
+    }
+
+    public void addHD(HoatDong a) {
+        layFileHD();
+        listHD.add(a);
+        showDataHDDT(listHD, modelHDDT);
+        luuFileHD(listHD);
+    }
+
+    public void addTT(HoatDong tt) {
+        LayFileTT();
+        listHDTT.add(tt);
+        showDataTruyenThong(listHDTT, modelHDTT);
+        luuFileHDTT(listHDTT);
+    }
+
     void updateThanhVien(ThanhVien tv) {
         listTV.remove(indexThanhVien);
         this.addThanhVien(tv);
+    }
+
+    public void editCSVC(CoSoVC cs, int vt) {
+        listCSVC.set(vt, cs);
+        showDataCSVC(listCSVC, modelCSVC);
+        luuFile(listCSVC);
+    }
+
+    public void editHD(HoatDong a, int vt) {
+        listHD.set(vt, a);
+        showDataHDDT(listHD, modelHDDT);
+        luuFileHD(listHD);
+    }
+
+    public void editHDTT(HoatDong tt, int vt) {
+        listHDTT.set(vt, tt);
+        showDataTruyenThong(listHDTT, modelHDTT);
+        luuFileHDTT(listHDTT);
     }
 
     private void loadDataFromFile(String fileName) {
@@ -798,69 +833,94 @@ public class TrangChu extends javax.swing.JFrame implements View{
         listTV = controller.readDataFromFile(fileName);
         showDataThanhVien();
     }
-    
-    public void luuFile(List l){
+
+    public void luuFile(List l) {
         FileOutputStream fo;
         ObjectOutputStream out;
-        try{
+        try {
             fo = new FileOutputStream("csvc.txt");
             out = new ObjectOutputStream(fo);
             out.writeObject(l);
             out.close();
             fo.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void luuFileHD(List l){
+
+    public void luuFileHD(List l) {
         FileOutputStream fo;
         ObjectOutputStream out;
-        try{
+        try {
             fo = new FileOutputStream("hd.txt");
             out = new ObjectOutputStream(fo);
             out.writeObject(l);
             out.close();
             fo.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    
-    public void layFileCSVC(){
-        FileInputStream fi;
-        ObjectInputStream in;
-        try{
-            fi = new FileInputStream("csvc.txt");
-            in = new ObjectInputStream(fi);
-            listCSVC = (ArrayList<CoSoVC>)in.readObject();
-            fi.close();
-            in.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    public void layFileHD(){
-        FileInputStream fi;
-        ObjectInputStream in;
-        try{
-            fi = new FileInputStream("hd.txt");
-            in = new ObjectInputStream(fi);
-            listHD = (ArrayList<HoatDong>)in.readObject();
-            fi.close();
-            in.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    private void luuFileHDTT(List tt) {
+        FileOutputStream fo;
+        ObjectOutputStream out;
+        try {
+            fo = new FileOutputStream("hdTruyenThong.txt");
+            out = new ObjectOutputStream(fo);
+            out.writeObject(tt);
+            out.close();
+            fo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void layFileCSVC() {
+        FileInputStream fi;
+        ObjectInputStream in;
+        try {
+            fi = new FileInputStream("csvc.txt");
+            in = new ObjectInputStream(fi);
+            listCSVC = (ArrayList<CoSoVC>) in.readObject();
+            fi.close();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void layFileHD() {
+        FileInputStream fi;
+        ObjectInputStream in;
+        try {
+            fi = new FileInputStream("hd.txt");
+            in = new ObjectInputStream(fi);
+            listHD = (ArrayList<HoatDong>) in.readObject();
+            fi.close();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void LayFileTT() {
+        FileInputStream fi;
+        ObjectInputStream in;
+        try {
+            fi = new FileInputStream("hdTruyenThong.txt");
+            in = new ObjectInputStream(fi);
+            listHDTT = (ArrayList<HoatDong>) in.readObject();
+            fi.close();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public <T> void showDataThanhVien(List<T> list, DefaultTableModel model) {
-   
+
     }
 
     @Override
@@ -877,7 +937,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
         }
         int SoLuongCSVC = 0;
         double TongChiPhi = 0;
-        for(var x : listCSVC){
+        for (var x : listCSVC) {
             SoLuongCSVC += x.getSoLuong();
             TongChiPhi += x.getChiPhi();
         }
@@ -891,18 +951,18 @@ public class TrangChu extends javax.swing.JFrame implements View{
         model.fireTableDataChanged();
         for (T t : list) {
             if (t instanceof HoatDong) {
-                HoatDong a = (HoatDong) t;
-                if(a.getLoaiHD().equalsIgnoreCase("Hoat dong dao tao")){
+                HoatDong z = (HoatDong) t;
+                if (z.getLoaiHD().equalsIgnoreCase("Hoat dong dao tao")) {
                     model.addRow(new Object[]{
-                        a.getTenHD(), a.getThoiGian(), a.getDiaDiem(), a.getMoTa(), a.getSoThanhVien(), a.getKinhPhi()
+                        z.getTenHD(), z.getThoiGian(), z.getDiaDiem(), z.getMoTa(), z.getSoThanhVien(), z.getKinhPhi()
                     });
                 }
             }
         }
         int SoThanhVien = 0;
         double TongChiPhi = 0;
-        for(var x : listHD){
-            if(x.getLoaiHD().equalsIgnoreCase("Hoat dong dao tao")){
+        for (var x : listHD) {
+            if (x.getLoaiHD().equalsIgnoreCase("Hoat dong dao tao")) {
                 SoThanhVien += x.getSoThanhVien();
                 TongChiPhi += x.getKinhPhi();
             }
@@ -910,4 +970,31 @@ public class TrangChu extends javax.swing.JFrame implements View{
         txtThanhVienHDDT.setText("" + SoThanhVien);
         txtChiPhiHDDT.setText("" + TongChiPhi);
     }
+
+    @Override
+    public <T> void showDataTruyenThong(List<T> list, DefaultTableModel model) {
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (T t : list) {
+            if (t instanceof HoatDong) {
+                HoatDong a = (HoatDong) t;
+                if (a.getLoaiHD().equalsIgnoreCase("Hoat dong Truyen Thong")) {
+                    model.addRow(new Object[]{
+                        a.getTenHD(), a.getDanhGia(), a.getMoTa(), a.getSoThanhVien(), a.getDiaDiem(), a.getThoiGian(), a.getKinhPhi()
+                    });
+                }
+            }
+        }
+//        int SoThanhVien = 0;
+//        double TongChiPhi = 0;
+//        for (var x : listHD) {
+//            if (x.getLoaiHD().equalsIgnoreCase("Hoat dong Truyen Thong")) {
+//                SoThanhVien += x.getSoThanhVien();
+//                TongChiPhi += x.getKinhPhi();
+//            }
+//        }
+//        txtThanhVienHDDT.setText("" + SoThanhVien);
+//        txtChiPhiHDDT.setText("" + TongChiPhi);
+    }
+
 }

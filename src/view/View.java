@@ -16,5 +16,5 @@ public interface View {
     <T> void showDataCSVC(List<T> list , DefaultTableModel model);
     <T> void showDataHDDT(List<T> list , DefaultTableModel model);
 //    <T> void showDataTinHoc(List<T> list , DefaultTableModel model);
-//    <T> void showDataNhanSu(List<T> list , DefaultTableModel model);
+    <T> void showDataTruyenThong(List<T> list , DefaultTableModel model);
 }

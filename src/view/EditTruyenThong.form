@@ -47,7 +47,7 @@
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txttenTV" pref="201" max="32767" attributes="0"/>
+                          <Component id="txttenSK" pref="201" max="32767" attributes="0"/>
                           <Component id="txtmoTa" max="32767" attributes="0"/>
                           <Component id="txtdanhGia" max="32767" attributes="0"/>
                       </Group>
@@ -99,7 +99,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txttenTV" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txttenSK" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtSLTV" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
@@ -188,7 +188,7 @@
         <Property name="text" type="java.lang.String" value="Chi ph&#xed;:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txttenTV">
+    <Component class="javax.swing.JTextField" name="txttenSK">
     </Component>
     <Component class="javax.swing.JTextField" name="txtmoTa">
     </Component>
