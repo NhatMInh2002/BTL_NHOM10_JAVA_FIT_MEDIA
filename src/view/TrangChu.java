@@ -431,7 +431,7 @@ public class TrangChu extends javax.swing.JFrame implements View{
 
             },
             new String [] {
-                "Tên TV", "Vị trí", "Email", "SĐT", "Ban", "Tên HĐ", "Loại HĐ", "Địa điểm", "Thời gian ", "Chi Phí"
+                "Tên sự kiện", "Số thành viên tham gia", "Địa điểm", "Thời gian sự kiện", "Chi phí", "Mô tả ", "Đánh giá"
             }
         ));
         jScrollPane3.setViewportView(jTable3);
