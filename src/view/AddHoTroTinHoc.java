@@ -161,6 +161,13 @@ public class AddHoTroTinHoc extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         HoatDong x = new HoatDong();          
         try {
+            if(dsHoatDongHoTroTinHoc.isEmpty()){
+                x.setMaHD("HD1");
+            }
+            else{
+                String ma = "HD" + (dsHoatDongHoTroTinHoc.size() + 1);
+                x.setMaHD(ma);
+            }
             x.setTenHD(txtTenHoatDong.getText());
             x.setLoaiHD(txtLoaiHoatDong.getText());
             x.setThoiGian(txtThoiGian.getText());

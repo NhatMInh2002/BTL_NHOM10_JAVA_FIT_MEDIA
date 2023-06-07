@@ -23,6 +23,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private List<HoatDong> listHDTT;
 
     private controller.ControllerImp controller;
+    
     private int indexThanhVien;
 
     private final DefaultTableModel modelTV;
@@ -48,6 +49,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
         modelHDDT = (DefaultTableModel) tblHDDT.getModel();
         modelHDTT = (DefaultTableModel) tblTT.getModel();
         modelHDHoTroTinHoc= (DefaultTableModel) tblHoTroTinHoc.getModel();
+        loadDataFromTblHoTroTinHoc();
     }
 
     @SuppressWarnings("unchecked")
@@ -686,13 +688,13 @@ public class TrangChu extends javax.swing.JFrame implements View {
         showDataTruyenThong(listHDTT, modelHDTT);
         luuFileHDTT(listHDTT);
     }//GEN-LAST:event_xoaTTActionPerformed
-
+//luong
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         int vitri = tblHoTroTinHoc.getSelectedRow();
         listHDHoTroTinHoc.remove(vitri);
         showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
-        luuFile(listHDHoTroTinHoc);
+        luuFileHDHTTH(listHDHoTroTinHoc);
     }//GEN-LAST:event_jButton19ActionPerformed
 
     public static void main(String args[]) {
@@ -886,6 +888,12 @@ public class TrangChu extends javax.swing.JFrame implements View {
             e.printStackTrace();
         }
     }
+    private void loadDataFromTblHoTroTinHoc() {
+        layFileHDHT();
+        showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
+    }
+     
+    
     
     public void layFileCSVC() {
         FileInputStream fi;
@@ -971,6 +979,19 @@ public class TrangChu extends javax.swing.JFrame implements View {
         }
     }
 
+    public void luuFileHDHTTH(List l) {
+        FileOutputStream fo;
+        ObjectOutputStream out;
+        try {
+            fo = new FileOutputStream("hotrotinhoc.txt");
+            out = new ObjectOutputStream(fo);
+            out.writeObject(l);
+            out.close();
+            fo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public <T> void showDataThanhVien(List<T> list, DefaultTableModel model) {
 
