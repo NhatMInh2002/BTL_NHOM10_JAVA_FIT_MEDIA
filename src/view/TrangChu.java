@@ -471,9 +471,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
                 "Tên sự kiện", "Đánh giá", "Mô tả", "Số lượng thành viên", "Địa điểm", "Thời gian ", "Chi Phí"
             }
         ));
-        tblTT.setColumnSelectionAllowed(true);
         jScrollPane3.setViewportView(tblTT);
-        tblTT.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel1.setText("Tổng thành viên :");
 
@@ -626,12 +624,10 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private void suaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaTTActionPerformed
         // TODO add your handling code here:
         int vitri = tblTT.getSelectedRow();
-        if (listHD.size() == 0) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Hãy nhập thêm thành viên");
-        } else if (indexThanhVien == -1) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Hãy chọn thành viên rồi chỉnh sửa !");
+        if (listHDTT.size() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Hãy nhập thêm sự kiện");
+        } else if (vitri == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn 1 hàng rồi chỉnh sửa !");
         } else {
             new EditTruyenThong(this, rootPaneCheckingEnabled, vitri).setVisible(true);
         }
@@ -683,9 +679,9 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private void xoaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaTTActionPerformed
         // TODO add your handling code here:
         int vitri = tblTT.getSelectedRow();
-        listHD.remove(vitri);
-        showDataHDDT(listHD, modelHDDT);
-        luuFileHD(listHD);
+        listHDTT.remove(vitri);
+        showDataTruyenThong(listHDTT, modelHDTT);
+        luuFileHDTT(listHDTT);
     }//GEN-LAST:event_xoaTTActionPerformed
 
     public static void main(String args[]) {
@@ -799,10 +795,10 @@ public class TrangChu extends javax.swing.JFrame implements View {
         luuFileHD(listHD);
     }
 
-    public void addTT(HoatDong tt) {    
+    public void addTT(HoatDong tt) {
+        LayFileTT();
         listHDTT.add(tt);
         luuFileHDTT(listHDTT);
-        LayFileTT();
         showDataTruyenThong(listHDTT, modelHDTT);
     }
 

@@ -29,19 +29,19 @@ public class EditTruyenThong extends javax.swing.JDialog {
         layFileHDTT();
         tt = dsHDTT.get(vitri);
         txttenSK.setText(tt.getTenHD());
-        txtmoTa.setText(tt.getTenHD());
-        txtdanhGia.setText(tt.getTenHD());
-        txtSLTV.setText(tt.getTenHD());
+        txtmoTa.setText(tt.getMoTa());
+        txtdanhGia.setText(tt.getDanhGia());
+        txtSLTV.setText("" + tt.getSoThanhVien());
         txtdiaDiem.setText(tt.getDiaDiem());
-        txtthoiGian.setText(tt.getTenHD());
-        txtchiPhi.setText("" + tt.getTenHD());
+        txtthoiGian.setText(tt.getThoiGian());
+        txtchiPhi.setText("" + tt.getKinhPhi());
     }
 
     public void layFileHDTT() {
         FileInputStream fi;
         ObjectInputStream in;
         try {
-            fi = new FileInputStream("TruyenThong.txt");
+            fi = new FileInputStream("hdTruyenThong.txt");
             in = new ObjectInputStream(fi);
             dsHDTT = (ArrayList<HoatDong>) in.readObject();
             fi.close();
@@ -254,7 +254,21 @@ public class EditTruyenThong extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
                 flag = false;
             }
+            
+            tt.setTenHD(txttenSK.getText());
+            tt.setLoaiHD("Hoat dong truyen thong");
+            tt.setDiaDiem(txtdiaDiem.getText());
+            tt.setThoiGian(txtthoiGian.getText());
+            tt.setMoTa(txtmoTa.getText());
+            tt.setSoThanhVien(Integer.parseInt(txtSLTV.getText()));
+            tt.setKinhPhi(Double.parseDouble(txtchiPhi.getText()));
+            tt.setDanhGia(txtdanhGia.getText());
+            
+            
             home.editHDTT(tt, vitri);
+
+            JOptionPane.showMessageDialog(rootPane, tt.getTenHD());
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
