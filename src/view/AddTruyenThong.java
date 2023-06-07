@@ -210,7 +210,7 @@ public class AddTruyenThong extends javax.swing.JDialog {
                 tt.setMaHD(ma);
             }
             tt.setTenHD(txttenSK.getText());
-            tt.setLoaiHD("Hoat dong dao tao");
+            tt.setLoaiHD("Hoat dong truyen thong");
             tt.setDiaDiem(txtdiaDiem.getText());
             tt.setThoiGian(txtthoiGian.getText());
             tt.setMoTa(txtmoTa.getText());
