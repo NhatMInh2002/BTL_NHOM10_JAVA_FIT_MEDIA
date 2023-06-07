@@ -4,14 +4,13 @@ import Model.HoatDong;
 import Model.Quy;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static view.EditTruyenThong.vitri;
 
 public class AddTruyenThong extends javax.swing.JDialog {
 
     private TrangChu home;
+
     ArrayList<HoatDong> dsHDTT = new ArrayList<HoatDong>();
     Quy z;
-    HoatDong tt;
 
     public AddTruyenThong(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -201,53 +200,16 @@ public class AddTruyenThong extends javax.swing.JDialog {
     }//GEN-LAST:event_HuyBobtnActionPerformed
 
     private void ThemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemBtnActionPerformed
-        // Khi nhấn vào nút này thì cập nhật dữ liệu về nhân sự vào bảng Nhân sự ở Trang Chủ
-//        String ten = txttenSK.getText();
-//        int soluong = Integer.parseInt(txtSL.getText());
-//        String diaDiem = txtdiaDiem.getText();
-//        String thoiGian = txtthoiGian.getText();
-//        double chiPhi = Double.parseDouble(txtchiPhi.getText());
-//        String moTa = txtmoTa.getText();
-//        String danhGia = txtDG.getText();
-//        String maHD;
-//        String loaiHD = "Hoat dong Truyen Thong";
-//            if(dsHDTT.isEmpty()){
-//                maHD = "HD1";
-//            }
-//            else{
-//                maHD = "HD" + (dsHDTT.size() + 1);
-//            }
-//
-//        boolean flag = true;
-//        if (ten.trim().length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        } else if (soluong == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        } else if (diaDiem.trim().length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        } else if (thoiGian.trim().length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        } else if (chiPhi == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        }
-//        if(flag){
-//            tt = new HoatDong(maHD, ten, loaiHD, thoiGian, soluong, chiPhi, diaDiem, moTa, danhGia);
-//            home.addTT(tt);
-//        }
+        // TODO add your handling code here:
         HoatDong x = new HoatDong();
         try {
-            if(dsHDTT.isEmpty()){
+            if (dsHDTT.isEmpty()) {
                 x.setMaHD("HD1");
-            }
-            else{
+            } else {
                 String ma = "HD" + (dsHDTT.size() + 1);
                 x.setMaHD(ma);
             }
+
             x.setTenHD(txttenSK.getText());
             x.setLoaiHD("Hoat dong Truyen Thong");
             x.setDiaDiem(txtdiaDiem.getText());
@@ -258,7 +220,8 @@ public class AddTruyenThong extends javax.swing.JDialog {
             x.setDanhGia(txtDG.getText());
             //z.tongQuy -= Double.parseDouble(txtKinhPhi.getText());
             home.addTT(x);
-            
+            // Hiển thị thông báo thêm thành công
+            JOptionPane.showMessageDialog(this, "Thêm thành công.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

@@ -17,17 +17,18 @@ import javax.swing.table.DefaultTableModel;
 
 public class TrangChu extends javax.swing.JFrame implements View {
 
-    List<ThanhVien> listTV;
-    private DefaultTableModel modelTV;
-    private controller.ControllerImp controller;
-    private int indexThanhVien;
-
+    private List<ThanhVien> listTV;
     private List<CoSoVC> listCSVC;
     private List<HoatDong> listHD;
     private List<HoatDong> listHDTT;
-    private DefaultTableModel modelCSVC;
-    private DefaultTableModel modelHDDT;
-    private DefaultTableModel modelHDTT;
+
+    private controller.ControllerImp controller;
+    private int indexThanhVien;
+
+    private final DefaultTableModel modelTV;
+    private final DefaultTableModel modelCSVC;
+    private final DefaultTableModel modelHDDT;
+    private final DefaultTableModel modelHDTT;
 
     public TrangChu() {
         initComponents();
@@ -93,9 +94,9 @@ public class TrangChu extends javax.swing.JFrame implements View {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblTT = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTongThanhVienTT = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTongChiPhiTT = new javax.swing.JTextField();
         themTT = new javax.swing.JButton();
         suaTT = new javax.swing.JButton();
         xoaTT = new javax.swing.JButton();
@@ -513,11 +514,11 @@ public class TrangChu extends javax.swing.JFrame implements View {
                         .addGap(13, 13, 13)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTongThanhVienTT, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTongChiPhiTT, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40))))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(345, 345, 345)
@@ -536,9 +537,9 @@ public class TrangChu extends javax.swing.JFrame implements View {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTongThanhVienTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTongChiPhiTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(themTT)
@@ -744,8 +745,6 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
@@ -762,7 +761,9 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private javax.swing.JButton themTT;
     private javax.swing.JTextField txtChiPhiHDDT;
     private javax.swing.JTextField txtThanhVienHDDT;
+    private javax.swing.JTextField txtTongChiPhiTT;
     private javax.swing.JTextField txtTongThanhVien;
+    private javax.swing.JTextField txtTongThanhVienTT;
     private javax.swing.JButton xoaCSVC;
     private javax.swing.JButton xoaDT;
     private javax.swing.JButton xoaTT;
@@ -798,11 +799,11 @@ public class TrangChu extends javax.swing.JFrame implements View {
         luuFileHD(listHD);
     }
 
-    public void addTT(HoatDong tt) {
-        LayFileTT();
+    public void addTT(HoatDong tt) {    
         listHDTT.add(tt);
-        showDataTruyenThong(listHDTT, modelHDTT);
         luuFileHDTT(listHDTT);
+        LayFileTT();
+        showDataTruyenThong(listHDTT, modelHDTT);
     }
 
     void updateThanhVien(ThanhVien tv) {
@@ -832,48 +833,6 @@ public class TrangChu extends javax.swing.JFrame implements View {
         controller = new ControllerImp();
         listTV = controller.readDataFromFile(fileName);
         showDataThanhVien();
-    }
-
-    public void luuFile(List l) {
-        FileOutputStream fo;
-        ObjectOutputStream out;
-        try {
-            fo = new FileOutputStream("csvc.txt");
-            out = new ObjectOutputStream(fo);
-            out.writeObject(l);
-            out.close();
-            fo.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void luuFileHD(List l) {
-        FileOutputStream fo;
-        ObjectOutputStream out;
-        try {
-            fo = new FileOutputStream("hd.txt");
-            out = new ObjectOutputStream(fo);
-            out.writeObject(l);
-            out.close();
-            fo.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void luuFileHDTT(List tt) {
-        FileOutputStream fo;
-        ObjectOutputStream out;
-        try {
-            fo = new FileOutputStream("hdTruyenThong.txt");
-            out = new ObjectOutputStream(fo);
-            out.writeObject(tt);
-            out.close();
-            fo.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void layFileCSVC() {
@@ -913,6 +872,48 @@ public class TrangChu extends javax.swing.JFrame implements View {
             listHDTT = (ArrayList<HoatDong>) in.readObject();
             fi.close();
             in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void luuFile(List l) {
+        FileOutputStream fo;
+        ObjectOutputStream out;
+        try {
+            fo = new FileOutputStream("csvc.txt");
+            out = new ObjectOutputStream(fo);
+            out.writeObject(l);
+            out.close();
+            fo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void luuFileHD(List l) {
+        FileOutputStream fo;
+        ObjectOutputStream out;
+        try {
+            fo = new FileOutputStream("hd.txt");
+            out = new ObjectOutputStream(fo);
+            out.writeObject(l);
+            out.close();
+            fo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void luuFileHDTT(List tt) {
+        FileOutputStream fo;
+        ObjectOutputStream out;
+        try {
+            fo = new FileOutputStream("hdTruyenThong.txt");
+            out = new ObjectOutputStream(fo);
+            out.writeObject(tt);
+            out.close();
+            fo.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -973,7 +974,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
     @Override
     public <T> void showDataTruyenThong(List<T> list, DefaultTableModel model) {
-        model.getDataVector().removeAllElements();
+        model.setRowCount(0); // Xóa tất cả các dòng trong mô hình
         model.fireTableDataChanged();
         for (T t : list) {
             if (t instanceof HoatDong) {
@@ -985,16 +986,16 @@ public class TrangChu extends javax.swing.JFrame implements View {
                 }
             }
         }
-//        int SoThanhVien = 0;
-//        double TongChiPhi = 0;
-//        for (var x : listHD) {
-//            if (x.getLoaiHD().equalsIgnoreCase("Hoat dong Truyen Thong")) {
-//                SoThanhVien += x.getSoThanhVien();
-//                TongChiPhi += x.getKinhPhi();
-//            }
-//        }
-//        txtThanhVienHDDT.setText("" + SoThanhVien);
-//        txtChiPhiHDDT.setText("" + TongChiPhi);
+        int SoThanhVien = 0;
+        double TongChiPhi = 0;
+        for (var x : listHDTT) {
+            if (x.getLoaiHD().equalsIgnoreCase("Hoat dong Truyen Thong")) {
+                SoThanhVien += x.getSoThanhVien();
+                TongChiPhi += x.getKinhPhi();
+            }
+        }
+        txtTongThanhVienTT.setText(String.valueOf(SoThanhVien));
+        txtTongChiPhiTT.setText(String.valueOf(TongChiPhi));
     }
 
 }
