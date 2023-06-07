@@ -4,14 +4,13 @@ import Model.HoatDong;
 import Model.Quy;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static view.EditTruyenThong.vitri;
 
 public class AddTruyenThong extends javax.swing.JDialog {
 
     private TrangChu home;
+
     ArrayList<HoatDong> dsHDTT = new ArrayList<HoatDong>();
     Quy z;
-    HoatDong tt;
 
     public AddTruyenThong(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -201,63 +200,37 @@ public class AddTruyenThong extends javax.swing.JDialog {
     }//GEN-LAST:event_HuyBobtnActionPerformed
 
     private void ThemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThemBtnActionPerformed
-        // Khi nhấn vào nút này thì cập nhật dữ liệu về nhân sự vào bảng Nhân sự ở Trang Chủ
-//        String ten = txttenSK.getText();
-//        int soluong = Integer.parseInt(txtSL.getText());
-//        String diaDiem = txtdiaDiem.getText();
-//        String thoiGian = txtthoiGian.getText();
-//        double chiPhi = Double.parseDouble(txtchiPhi.getText());
-//        String moTa = txtmoTa.getText();
-//        String danhGia = txtDG.getText();
-//        String maHD;
-//        String loaiHD = "Hoat dong Truyen Thong";
-//            if(dsHDTT.isEmpty()){
-//                maHD = "HD1";
-//            }
-//            else{
-//                maHD = "HD" + (dsHDTT.size() + 1);
-//            }
-//
-//        boolean flag = true;
-//        if (ten.trim().length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        } else if (soluong == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        } else if (diaDiem.trim().length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        } else if (thoiGian.trim().length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        } else if (chiPhi == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-//            flag = false;
-//        }
-//        if(flag){
-//            tt = new HoatDong(maHD, ten, loaiHD, thoiGian, soluong, chiPhi, diaDiem, moTa, danhGia);
-//            home.addTT(tt);
-//        }
-        HoatDong x = new HoatDong();
+        // TODO add your handling code here:
+        HoatDong tt = new HoatDong();
         try {
-            if(dsHDTT.isEmpty()){
-                x.setMaHD("HD1");
-            }
-            else{
+            if (dsHDTT.isEmpty()) {
+                tt.setMaHD("HD1");
+            } else {
                 String ma = "HD" + (dsHDTT.size() + 1);
-                x.setMaHD(ma);
+                tt.setMaHD(ma);
             }
-            x.setTenHD(txttenSK.getText());
-            x.setLoaiHD("Hoat dong dao tao");
-            x.setDiaDiem(txtdiaDiem.getText());
-            x.setThoiGian(txtthoiGian.getText());
-            x.setMoTa(txtmoTa.getText());
-            x.setSoThanhVien(Integer.parseInt(txtSL.getText()));
-            x.setKinhPhi(Double.parseDouble(txtchiPhi.getText()));
-            x.setDanhGia(txtDG.getText());
-            //z.tongQuy -= Double.parseDouble(txtKinhPhi.getText());
-            home.addHD(x);
+            tt.setTenHD(txttenSK.getText());
+            tt.setLoaiHD("Hoat dong dao tao");
+            tt.setDiaDiem(txtdiaDiem.getText());
+            tt.setThoiGian(txtthoiGian.getText());
+            tt.setMoTa(txtmoTa.getText());
+            tt.setSoThanhVien(Integer.parseInt(txtSL.getText()));
+            tt.setKinhPhi(Double.parseDouble(txtchiPhi.getText()));
+            tt.setDanhGia(txtDG.getText());
+
+            //Them vao danh sach hoat dong truyen thong
+            home.addTT(tt);
+            // Hiển thị thông báo thêm thành công
+            JOptionPane.showMessageDialog(this, "Thêm thành công.");
+
+            // Reset các ô dữ liệu về trống
+            txttenSK.setText("");
+            txtdiaDiem.setText("");
+            txtthoiGian.setText("");
+            txtmoTa.setText("");
+            txtSL.setText("");
+            txtchiPhi.setText("");
+            txtDG.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
