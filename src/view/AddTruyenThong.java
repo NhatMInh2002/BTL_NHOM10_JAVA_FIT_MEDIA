@@ -249,7 +249,7 @@ public class AddTruyenThong extends javax.swing.JDialog {
                 x.setMaHD(ma);
             }
             x.setTenHD(txttenSK.getText());
-            x.setLoaiHD("Hoat dong dao tao");
+            x.setLoaiHD("Hoat dong Truyen Thong");
             x.setDiaDiem(txtdiaDiem.getText());
             x.setThoiGian(txtthoiGian.getText());
             x.setMoTa(txtmoTa.getText());
@@ -257,7 +257,8 @@ public class AddTruyenThong extends javax.swing.JDialog {
             x.setKinhPhi(Double.parseDouble(txtchiPhi.getText()));
             x.setDanhGia(txtDG.getText());
             //z.tongQuy -= Double.parseDouble(txtKinhPhi.getText());
-            home.addHD(x);
+            home.addTT(x);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
