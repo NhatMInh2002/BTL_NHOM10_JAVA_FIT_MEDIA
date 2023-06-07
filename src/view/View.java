@@ -17,4 +17,5 @@ public interface View {
     <T> void showDataHDDT(List<T> list , DefaultTableModel model);
 //    <T> void showDataTinHoc(List<T> list , DefaultTableModel model);
     <T> void showDataTruyenThong(List<T> list , DefaultTableModel model);
+    <T> void showDataHDHT(List<T> list, DefaultTableModel model); 
 }

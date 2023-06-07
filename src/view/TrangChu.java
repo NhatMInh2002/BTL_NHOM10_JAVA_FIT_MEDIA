@@ -30,6 +30,9 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private final DefaultTableModel modelHDDT;
     private final DefaultTableModel modelHDTT;
 
+    private List<HoatDong> listHDHoTroTinHoc;
+    private final DefaultTableModel modelHDHoTroTinHoc;
+    
     public TrangChu() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -40,9 +43,11 @@ public class TrangChu extends javax.swing.JFrame implements View {
         listCSVC = new ArrayList<>();
         listHD = new ArrayList<>();
         listHDTT = new ArrayList<>();
+        listHDHoTroTinHoc= new ArrayList<>();
         modelCSVC = (DefaultTableModel) tblCSVC.getModel();
         modelHDDT = (DefaultTableModel) tblHDDT.getModel();
         modelHDTT = (DefaultTableModel) tblTT.getModel();
+        modelHDHoTroTinHoc= (DefaultTableModel) tblHoTroTinHoc.getModel();
     }
 
     @SuppressWarnings("unchecked")
@@ -82,12 +87,12 @@ public class TrangChu extends javax.swing.JFrame implements View {
         xoaDT = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
+        tblHoTroTinHoc = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
-        jButton17 = new javax.swing.JButton();
+        addHDHTTH = new javax.swing.JButton();
         jButton18 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -213,11 +218,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
         jLabel5.setText("Tổng số lượng thiết bị:");
 
-        jTextField5.setText("jTextField5");
-
         jLabel6.setText("Tổng chi phí:");
-
-        jTextField6.setText("jTextField6");
 
         themCSVC.setText("Thêm");
         themCSVC.addActionListener(new java.awt.event.ActionListener() {
@@ -380,7 +381,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
         jTabbedPane1.addTab("Quản Lý HĐ Đào Tạo", jPanel3);
 
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        tblHoTroTinHoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -388,20 +389,16 @@ public class TrangChu extends javax.swing.JFrame implements View {
                 "Tên hoạt động", "Loại hoạt động", "Thời gian", "Địa điểm", "Mô tả", "Số lượng TV", "Chi phí"
             }
         ));
-        jScrollPane6.setViewportView(jTable6);
+        jScrollPane6.setViewportView(tblHoTroTinHoc);
 
         jLabel7.setText("Tổng số thành viên :");
 
-        jTextField7.setText("jTextField7");
-
         jLabel9.setText("Tổng chi phí:");
 
-        jTextField8.setText("jTextField8");
-
-        jButton17.setText("Thêm");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        addHDHTTH.setText("Thêm");
+        addHDHTTH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                addHDHTTHActionPerformed(evt);
             }
         });
 
@@ -413,6 +410,11 @@ public class TrangChu extends javax.swing.JFrame implements View {
         });
 
         jButton19.setText("Xoá");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -430,7 +432,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(185, 185, 185)
-                        .addComponent(jButton17)
+                        .addComponent(addHDHTTH)
                         .addGap(102, 102, 102)
                         .addComponent(jButton18)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
@@ -455,7 +457,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton17)
+                    .addComponent(addHDHTTH)
                     .addComponent(jButton18)
                     .addComponent(jButton19))
                 .addGap(35, 35, 35))
@@ -579,10 +581,10 @@ public class TrangChu extends javax.swing.JFrame implements View {
         new AddDaoTao(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_themDTActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+    private void addHDHTTHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHDHTTHActionPerformed
         // TODO add your handling code here:
         new AddHoTroTinHoc(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_jButton17ActionPerformed
+    }//GEN-LAST:event_addHDHTTHActionPerformed
 
     private void themTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themTTActionPerformed
         // TODO add your handling code here:
@@ -618,7 +620,8 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        new EditHoTroTinHoc(this, rootPaneCheckingEnabled).setVisible(true);
+        int vitri = tblHoTroTinHoc.getSelectedRow();
+        new EditHoTroTinHoc(this, rootPaneCheckingEnabled,vitri).setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void suaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaTTActionPerformed
@@ -684,6 +687,14 @@ public class TrangChu extends javax.swing.JFrame implements View {
         luuFileHDTT(listHDTT);
     }//GEN-LAST:event_xoaTTActionPerformed
 
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        int vitri = tblHoTroTinHoc.getSelectedRow();
+        listHDHoTroTinHoc.remove(vitri);
+        showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
+        luuFile(listHDHoTroTinHoc);
+    }//GEN-LAST:event_jButton19ActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -712,10 +723,10 @@ public class TrangChu extends javax.swing.JFrame implements View {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addHDHTTH;
     private javax.swing.JButton btnSuaThanhVien;
     private javax.swing.JButton btnThemTV;
     private javax.swing.JButton btnXoaThanhVien;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JLabel jLabel1;
@@ -740,7 +751,6 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable6;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
@@ -750,6 +760,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private javax.swing.JButton suaTT;
     private javax.swing.JTable tblCSVC;
     private javax.swing.JTable tblHDDT;
+    private javax.swing.JTable tblHoTroTinHoc;
     private javax.swing.JTable tblTT;
     private javax.swing.JTable tblThanhVien;
     private javax.swing.JButton themCSVC;
@@ -765,6 +776,20 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private javax.swing.JButton xoaTT;
     // End of variables declaration//GEN-END:variables
 
+    //luong
+    public void addHDHoTroTinHoc(HoatDong hd){
+        layFileHDHT();
+        listHDHoTroTinHoc.add(hd);
+        showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
+        luuFileHDHT(listHDHoTroTinHoc);
+    }
+    public void editHDHoTroTinHoc(HoatDong hd, int vt){
+        listHDHoTroTinHoc.set(vt, hd);
+        showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
+        luuFileHDHT(listHDHoTroTinHoc);
+    }
+    
+    
     private void showDataThanhVien() {
         modelTV.setRowCount(0);
         for (ThanhVien tv : listTV) {
@@ -831,6 +856,37 @@ public class TrangChu extends javax.swing.JFrame implements View {
         showDataThanhVien();
     }
 
+    //luong
+    public void layFileHDHT(){
+        FileInputStream fi;
+        ObjectInputStream in;
+        try{
+            fi = new FileInputStream("hotrotinhoc.txt");
+            in = new ObjectInputStream(fi);
+            listHDHoTroTinHoc = (ArrayList<HoatDong>)in.readObject();
+            fi.close();
+            in.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+     public void luuFileHDHT(List l){
+        FileOutputStream fo;
+        ObjectOutputStream out;
+        try{
+            fo = new FileOutputStream("hotrotinhoc.txt");
+            out = new ObjectOutputStream(fo);
+            out.writeObject(l);
+            out.close();
+            fo.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public void layFileCSVC() {
         FileInputStream fi;
         ObjectInputStream in;
@@ -994,4 +1050,27 @@ public class TrangChu extends javax.swing.JFrame implements View {
         txtTongChiPhiTT.setText(String.valueOf(TongChiPhi));
     }
 
+    //luong
+    @Override
+    public <T> void showDataHDHT(List<T> list, DefaultTableModel model) {
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        for (T t : list) {
+            if (t instanceof HoatDong) {
+                HoatDong hd = (HoatDong) t;
+                model.addRow(new Object[]{
+                    hd.getTenHD(), hd.getLoaiHD(), hd.getThoiGian(), hd.getDiaDiem(), hd.getMoTa(),hd.getSoThanhVien(),hd.getKinhPhi()
+                });
+            }
+        }
+        int SoLuonghd = 0;
+        double TongChiPhi = 0;
+        for(var x : listHDHoTroTinHoc){
+            SoLuonghd += x.getSoThanhVien();
+            TongChiPhi += x.getKinhPhi();
+        }
+        jTextField7.setText("" + SoLuonghd);
+        jTextField8.setText("" + TongChiPhi);
+    }
+    
 }

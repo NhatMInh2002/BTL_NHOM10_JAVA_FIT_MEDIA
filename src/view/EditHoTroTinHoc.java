@@ -1,14 +1,25 @@
 package view;
-
+import Model.HoatDong;
+import Model.Quy;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import java.io.*;
 public class EditHoTroTinHoc extends javax.swing.JDialog {
 
     private TrangChu home;
 
-    public EditHoTroTinHoc(java.awt.Frame parent, boolean modal) {
+    ArrayList<HoatDong> dsHoatDongHoTroTinHoc = new ArrayList<HoatDong>();
+    HoatDong x;
+    Quy z;
+    static int vitri;
+    
+    public EditHoTroTinHoc(java.awt.Frame parent, boolean modal,int vt) {
         super(parent, modal);
         initComponents();
         home = (TrangChu) parent;
         this.setLocationRelativeTo(null);
+        vitri = vt;
+        setDefaultData();
     }
 
     @SuppressWarnings("unchecked")
@@ -22,13 +33,13 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txtTenHoatDong = new javax.swing.JTextField();
+        txtLoaiHoatDong = new javax.swing.JTextField();
+        txtThoiGian = new javax.swing.JTextField();
+        txtDiaDiem = new javax.swing.JTextField();
+        txtMoTa = new javax.swing.JTextField();
+        txtSoLuongThanhVien = new javax.swing.JTextField();
+        txtChiPhi = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -48,21 +59,12 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
 
         jLabel7.setText("Chí phí :");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
-
-        jTextField6.setText("jTextField6");
-
-        jTextField7.setText("jTextField7");
-
         jButton1.setText("Hoàn tất sửa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Huỷ bỏ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -86,10 +88,10 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)))
+                            .addComponent(txtLoaiHoatDong, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(txtTenHoatDong)
+                            .addComponent(txtThoiGian)
+                            .addComponent(txtDiaDiem)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(187, 187, 187)
                         .addComponent(jButton1)))
@@ -100,9 +102,9 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7))
+                    .addComponent(txtMoTa, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(txtSoLuongThanhVien)
+                    .addComponent(txtChiPhi))
                 .addGap(47, 47, 47))
             .addGroup(layout.createSequentialGroup()
                 .addGap(439, 439, 439)
@@ -116,26 +118,26 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTenHoatDong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMoTa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLoaiHoatDong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSoLuongThanhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtChiPhi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -151,6 +153,48 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     try {
+               x.setTenHD(txtTenHoatDong.getText());
+               x.setLoaiHD(txtLoaiHoatDong.getText());
+               x.setThoiGian(txtThoiGian.getText());
+               x.setDiaDiem(txtDiaDiem.getText());
+               x.setMoTa(txtMoTa.getText());
+               x.setSoThanhVien(Integer.parseInt(txtSoLuongThanhVien.getText()));
+               x.setKinhPhi(Double.parseDouble(txtChiPhi.getText()));
+               home.editHDHoTroTinHoc(x, vitri);
+           } catch (Exception e) {
+               JOptionPane.showMessageDialog(this, e.getMessage());
+           }          // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void setDefaultData(){
+        layFileHoatDongTinHoc();
+        x = dsHoatDongHoTroTinHoc.get(vitri);
+        txtTenHoatDong.setText(x.getTenHD());
+        txtLoaiHoatDong.setText(x.getLoaiHD());
+        txtThoiGian.setText(x.getThoiGian());
+        txtDiaDiem.setText("" + x.getDiaDiem());
+        txtMoTa.setText("" + x.getMoTa());  
+        txtSoLuongThanhVien.setText("" + x.getSoThanhVien());  
+        txtChiPhi.setText("" + x.getKinhPhi());  
+    }
+    
+    public void layFileHoatDongTinHoc(){
+        FileInputStream fi;
+        ObjectInputStream in;
+        try{
+            fi = new FileInputStream("hotrotinhoc.txt");
+            in = new ObjectInputStream(fi);
+            dsHoatDongHoTroTinHoc = (ArrayList<HoatDong>)in.readObject();
+            fi.close();
+            in.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -179,7 +223,7 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditHoTroTinHoc dialog = new EditHoTroTinHoc(new javax.swing.JFrame(), true);
+                EditHoTroTinHoc dialog = new EditHoTroTinHoc(new javax.swing.JFrame(), true,vitri);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -201,12 +245,12 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtChiPhi;
+    private javax.swing.JTextField txtDiaDiem;
+    private javax.swing.JTextField txtLoaiHoatDong;
+    private javax.swing.JTextField txtMoTa;
+    private javax.swing.JTextField txtSoLuongThanhVien;
+    private javax.swing.JTextField txtTenHoatDong;
+    private javax.swing.JTextField txtThoiGian;
     // End of variables declaration//GEN-END:variables
 }
