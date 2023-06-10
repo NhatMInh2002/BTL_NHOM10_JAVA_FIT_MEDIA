@@ -222,6 +222,7 @@ public class AddTruyenThong extends javax.swing.JDialog {
             tt.setDanhGia(txtDG.getText());
             boolean flag = true;
             int maxLength = 50;
+            
             if (ten.length() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Không được để trống Tên sự kiện");
                 flag = false;

@@ -268,7 +268,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
 
             if (flag) {
                 home.editHDTT(tt, vitri);
-                JOptionPane.showMessageDialog(rootPane, tt.getTenHD());
+                JOptionPane.showMessageDialog(rootPane, "Đã update sự kiện thành công");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());

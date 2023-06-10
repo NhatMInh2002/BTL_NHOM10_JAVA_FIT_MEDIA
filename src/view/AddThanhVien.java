@@ -259,7 +259,7 @@ public class AddThanhVien extends javax.swing.JDialog {
         String gmail = txtGmail.getText();
         String sdt = txtSDT.getText();
         String chucDanh = cbChucDanh.getSelectedItem().toString();
-
+        
         String pattern = "^[a-zA-Z0-9]+$";
         String pattern1 = "^[a-zA-Z\\sÀ-ỹ]+$";
         int maxLength = 30;

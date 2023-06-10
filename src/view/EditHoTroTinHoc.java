@@ -163,6 +163,7 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
                x.setSoThanhVien(Integer.parseInt(txtSoLuongThanhVien.getText()));
                x.setKinhPhi(Double.parseDouble(txtChiPhi.getText()));
                home.editHDHoTroTinHoc(x, vitri);
+               JOptionPane.showMessageDialog(rootPane, "Sua thanh cong!");
            } catch (Exception e) {
                JOptionPane.showMessageDialog(this, e.getMessage());
            }          // TODO add your handling code here:
