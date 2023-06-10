@@ -270,7 +270,6 @@ public class EditTruyenThong extends javax.swing.JDialog {
                 home.editHDTT(tt, vitri);
                 JOptionPane.showMessageDialog(rootPane, tt.getTenHD());
             }
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }

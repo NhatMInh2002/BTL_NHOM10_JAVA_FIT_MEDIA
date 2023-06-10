@@ -733,7 +733,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
         showDataTruyenThong(listHDTT, modelHDTT);
         luuFileHDTT(listHDTT);
     }//GEN-LAST:event_xoaTTActionPerformed
-//luong
+
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         int vitri = tblHoTroTinHoc.getSelectedRow();
@@ -965,20 +965,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
     }
 
     //luong
-    public void layFileHDHT(){
-        FileInputStream fi;
-        ObjectInputStream in;
-        try{
-            fi = new FileInputStream("hotrotinhoc.txt");
-            in = new ObjectInputStream(fi);
-            listHDHoTroTinHoc = (ArrayList<HoatDong>)in.readObject();
-            fi.close();
-            in.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+
     
      public void luuFileHDHT(List l){
         FileOutputStream fo;
@@ -1037,6 +1024,20 @@ public class TrangChu extends javax.swing.JFrame implements View {
             fi.close();
             in.close();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+        public void layFileHDHT(){
+        FileInputStream fi;
+        ObjectInputStream in;
+        try{
+            fi = new FileInputStream("hotrotinhoc.txt");
+            in = new ObjectInputStream(fi);
+            listHDHoTroTinHoc = (ArrayList<HoatDong>)in.readObject();
+            fi.close();
+            in.close();
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
     }
