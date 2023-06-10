@@ -12,10 +12,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Administrator
  */
 public interface View {
-    <T> void showDataThanhVien(List<T> list , DefaultTableModel model);
+//     void showDataThanhVien(List<ThanhVien> list , DefaultTableModel model);
     <T> void showDataCSVC(List<T> list , DefaultTableModel model);
     <T> void showDataHDDT(List<T> list , DefaultTableModel model);
-//    <T> void showDataTinHoc(List<T> list , DefaultTableModel model);
     <T> void showDataTruyenThong(List<T> list , DefaultTableModel model);
     <T> void showDataHDHT(List<T> list, DefaultTableModel model); 
 }

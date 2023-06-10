@@ -2,7 +2,10 @@ package view;
 
 import Model.ThanhVien;
 import controller.ControllerImp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -10,12 +13,14 @@ public class AddThanhVien extends javax.swing.JDialog {
 
     private TrangChu home;
     private controller.ControllerImp controller;
+    private List<ThanhVien> listTV;
 
     public AddThanhVien(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         home = (TrangChu) parent;
         this.setLocationRelativeTo(null);
+        this.setTitle("Trang nhập thông tin thành viên mới");
     }
 
     @SuppressWarnings("unchecked")
@@ -123,7 +128,7 @@ public class AddThanhVien extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnThem)
                     .addGroup(layout.createSequentialGroup()
@@ -142,7 +147,7 @@ public class AddThanhVien extends javax.swing.JDialog {
                             .addComponent(cbKhoa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addGroup(layout.createSequentialGroup()
@@ -161,15 +166,15 @@ public class AddThanhVien extends javax.swing.JDialog {
                                     .addComponent(txtSDT)
                                     .addComponent(cbChucDanh, 0, 194, Short.MAX_VALUE)
                                     .addComponent(txtNgaySinh))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(20, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(btnHuy)
-                        .addContainerGap(400, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(334, 334, 334)
+                .addGap(247, 247, 247)
                 .addComponent(jLabel11)
-                .addGap(0, 429, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +212,7 @@ public class AddThanhVien extends javax.swing.JDialog {
                     .addComponent(jLabel10)
                     .addComponent(cbChucDanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
                     .addComponent(btnHuy))
@@ -242,6 +247,9 @@ public class AddThanhVien extends javax.swing.JDialog {
         String chuyenNghanh = cbChuyenNghanh.getSelectedItem().toString();
         String ban = cbBan.getSelectedItem().toString();
         String ngay = txtNgaySinh.getText();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date ngaySinh = null;
+
         String gioiTinh = "";
         if (rbtnGioiTinhNam.isSelected()) {
             gioiTinh = "Nam";
@@ -252,14 +260,77 @@ public class AddThanhVien extends javax.swing.JDialog {
         String sdt = txtSDT.getText();
         String chucDanh = cbChucDanh.getSelectedItem().toString();
 
+        String pattern = "^[a-zA-Z0-9]+$";
+        String pattern1 = "^[a-zA-Z\\sÀ-ỹ]+$";
+        int maxLength = 30;
         boolean isOk = true;
-        if (ma.length() == 0) {
+        if (ma.trim().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Không được để trống mã thành viên!");
             isOk = false;
+        } else if (ma.length() > maxLength) {
+            JOptionPane.showMessageDialog(rootPane, "Mã thành viên không được vượt quá " + maxLength + " ký tự!");
+            isOk = false;
+        } else if (!ma.matches(pattern)) {
+            JOptionPane.showMessageDialog(rootPane, "Mã thành viên chỉ được chứa chữ cái và số!");
+            isOk = false;
+        } else if (ten.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống Tên thành viên!");
+            isOk = false;
+        } else if (ten.length() > maxLength) {
+            JOptionPane.showMessageDialog(rootPane, "Tên thành viên không được vượt quá " + maxLength + " ký tự!");
+            isOk = false;
+        } else if (!ten.matches(pattern1)) {
+            JOptionPane.showMessageDialog(rootPane, "Tên thành viên chỉ được chứa chữ cái, dấu cách và dấu gạch ngang!");
+            isOk = false;
+        } else if (ngay.trim().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập ngày sinh!");
+            isOk = false;
+        } else if (ngay.trim().length() != 0) {
+            try {
+                ngaySinh = dateFormat.parse(ngay);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Ngày sinh không hợp lệ!VD:10/11/2002");
+                isOk = false;
+            }
+        }
 
-            if (isOk) {
-                ThanhVien tv = new ThanhVien(ma, ten, khoa, chuyenNghanh, ban, ngay, gioiTinh, gmail, sdt, chucDanh);
+        if (isOk) {
+            if (gioiTinh.trim().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn giới tính!");
+                isOk = false;
+            } else if (gmail.trim().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập địa chỉ email! VD :abc@gmail.com");
+                isOk = false;
+            } else if (!isValidEmailFormat(gmail)) {
+                JOptionPane.showMessageDialog(rootPane, "Địa chỉ email không hợp lệ!");
+                isOk = false;
+            } else if (sdt.trim().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập số điện thoại!");
+                isOk = false;
+            } else if (!isValidPhoneNumber(sdt)) {
+                JOptionPane.showMessageDialog(rootPane, "Số điện thoại không hợp lệ! Vui lòng nhập 10 chữ số.");
+                isOk = false;
+            }
+        }
+
+        if (isOk) {
+            ThanhVien tv = new ThanhVien(ma, ten, khoa, chuyenNghanh, ban, ngay, gioiTinh, gmail, sdt, chucDanh);
+            String chuoi = tv.getMaTV().toUpperCase();
+            listTV = new ArrayList<>();
+            controller = new ControllerImp();
+            listTV = controller.readDataFromFile("TV.txt");
+            int ktra = 0;
+            for (ThanhVien x : listTV) {
+                String chuoi1 = x.getMaTV().toUpperCase();
+                if (chuoi1.equals(chuoi)) {
+                    JOptionPane.showMessageDialog(rootPane, "Mã thành viên này đã tồn tại , vui lòng kiểm tra lại !");
+                    ktra = 1;
+                    break;
+                }
+            }
+            if (ktra == 0) {
                 home.addThanhVien(tv);
+                JOptionPane.showMessageDialog(rootPane, "Thêm thành công thành viên mới !");
             }
         }
 
@@ -331,5 +402,13 @@ public class AddThanhVien extends javax.swing.JDialog {
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenTV;
     // End of variables declaration//GEN-END:variables
+    private boolean isValidEmailFormat(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@gmail\\.com$";
+        return email.matches(emailRegex);
+    }
 
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        String phoneNumberRegex = "\\d{10}";
+        return phoneNumber.matches(phoneNumberRegex);
+    }
 }

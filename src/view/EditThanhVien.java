@@ -1,6 +1,9 @@
 package view;
 
 import Model.ThanhVien;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class EditThanhVien extends javax.swing.JDialog {
@@ -12,6 +15,7 @@ public class EditThanhVien extends javax.swing.JDialog {
         initComponents();
         home = (TrangChu) parent;
         this.setLocationRelativeTo(null);
+        this.setTitle("Trang sửa thông tin thành viên");
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +46,7 @@ public class EditThanhVien extends javax.swing.JDialog {
         btnHuy = new javax.swing.JButton();
         txtNgaySinh = new javax.swing.JTextField();
         cbKhoa = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -110,6 +115,9 @@ public class EditThanhVien extends javax.swing.JDialog {
 
         cbKhoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K14", "K15", "K16", "K17" }));
 
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel11.setText("CHỈNH SỬA THÔNG TIN THÀNH VIÊN");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,12 +165,18 @@ public class EditThanhVien extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(btnHuy)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(361, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(259, 259, 259)
+                .addComponent(jLabel11)
+                .addGap(0, 315, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel6)
@@ -232,6 +246,8 @@ public class EditThanhVien extends javax.swing.JDialog {
         String chuyenNghanh = cbChuyenNghanh.getSelectedItem().toString();
         String ban = cbBan.getSelectedItem().toString();
         String ngay = txtNgaySinh.getText();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date ngaySinh = null;
         String gioiTinh = "";
         if (rbtnGioiTinhNam.isSelected()) {
             gioiTinh = "Nam";
@@ -242,39 +258,53 @@ public class EditThanhVien extends javax.swing.JDialog {
         String sdt = txtSDT.getText();
         String chucDanh = cbChucDanh.getSelectedItem().toString();
 
-        int maxLength = 10;
         String pattern = "^[a-zA-Z0-9]+$";
+        String pattern1 = "^[a-zA-Z\\sÀ-ỹ]+$";
+        int maxLength = 30;
         boolean isOk = true;
-        if (ma.length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Không được để trống mã thành viên!");
+         if (ten.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống Tên thành viên!");
             isOk = false;
-        } else if (ma.length() > maxLength) {
-            JOptionPane.showMessageDialog(rootPane, "Mã thành viên không được vượt quá " + maxLength + " ký tự!");
+        } else if (ten.length() > maxLength) {
+            JOptionPane.showMessageDialog(rootPane, "Tên thành viên không được vượt quá " + maxLength + " ký tự!");
             isOk = false;
-        } else if (!ma.matches(pattern)) {
-            JOptionPane.showMessageDialog(rootPane, "Mã thành viên chỉ được chứa chữ cái và số!");
+        } else if (!ten.matches(pattern1)) {
+            JOptionPane.showMessageDialog(rootPane, "Tên thành viên chỉ được chứa chữ cái, dấu cách và dấu gạch ngang!");
             isOk = false;
+        } else if (ngay.trim().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập ngày sinh!");
+            isOk = false;
+        } else if (ngay.trim().length() != 0) {
+            try {
+                ngaySinh = dateFormat.parse(ngay);
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Ngày sinh không hợp lệ!VD:10/11/2002");
+                isOk = false;
+            }
         }
 
-//        } else if (ten.length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Không được để trống tên thành viên!");
-//            isOk = false;
-//        }  else if (ngay.length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Không được để trống ngày sinh thành viên!");
-//            isOk = false;
-//        } else if (gioiTinh.length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Không được để trống giới tính thành viên!");
-//            isOk = false;
-//        } else if (gmail.length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Không được để trống gmail thành viên!");
-//            isOk = false;
-//        } else if (sdt.length() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Không được để trống số điện thoại thành viên!");
-//            isOk = false;
-//        }
         if (isOk) {
-            ThanhVien tv = new ThanhVien(ma, ten, khoa, chuyenNghanh, ban, ngay, gioiTinh, gmail, sdt, chucDanh);
-            home.updateThanhVien(tv);
+            if (gioiTinh.trim().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn giới tính!");
+                isOk = false;
+            } else if (gmail.trim().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập địa chỉ email! VD :abc@gmail.com");
+                isOk = false;
+            } else if (!isValidEmailFormat(gmail)) {
+                JOptionPane.showMessageDialog(rootPane, "Địa chỉ email không hợp lệ!");
+                isOk = false;
+            } else if (sdt.trim().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập số điện thoại!");
+                isOk = false;
+            } else if (!isValidPhoneNumber(sdt)) {
+                JOptionPane.showMessageDialog(rootPane, "Số điện thoại không hợp lệ! Vui lòng nhập 10 chữ số.");
+                isOk = false;
+            }
+            if (isOk) {
+                ThanhVien tv = new ThanhVien(ma, ten, khoa, chuyenNghanh, ban, ngay, gioiTinh, gmail, sdt, chucDanh);
+                home.updateThanhVien(tv);
+                JOptionPane.showMessageDialog(rootPane, "Sửa thành công thành viên mới !");
+            }
         }
     }//GEN-LAST:event_btnHoanTatActionPerformed
 
@@ -328,6 +358,7 @@ public class EditThanhVien extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbKhoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -347,6 +378,7 @@ public class EditThanhVien extends javax.swing.JDialog {
 
     public void setEditData(ThanhVien tv) {
         txtMaTV.setText(tv.getMaTV());
+        txtMaTV.setEditable(false);
         txtTenTV.setText(tv.getTenTV());
         cbKhoa.setSelectedItem(tv.getKhoa());
         cbChuyenNghanh.setSelectedItem(tv.getChuyenNghanh());
@@ -357,10 +389,19 @@ public class EditThanhVien extends javax.swing.JDialog {
         } else if (tv.getGioiTinh().equals("Nữ")) {
             rbtnGioiTinhNu.setSelected(true);
         }
-        rbtnGioiTinhNam.setText(tv.getGioiTinh());
         txtGmail.setText(tv.getEmail());
         txtSDT.setText(tv.getSdt());
         cbChucDanh.setSelectedItem(tv.getChucDanh());
+    }
+
+    private boolean isValidEmailFormat(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@gmail\\.com$";
+        return email.matches(emailRegex);
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        String phoneNumberRegex = "\\d{10}";
+        return phoneNumber.matches(phoneNumberRegex);
     }
 
 }

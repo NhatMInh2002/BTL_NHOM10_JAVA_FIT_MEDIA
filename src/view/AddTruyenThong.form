@@ -56,7 +56,7 @@
                       <Component id="jLabel2" min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="298" max="32767" attributes="0"/>
+              <EmptySpace pref="339" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -92,7 +92,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtthoiGian" pref="267" max="32767" attributes="0"/>
+                              <Component id="txtthoiGian" pref="308" max="32767" attributes="0"/>
                               <Component id="txtdiaDiem" max="32767" attributes="0"/>
                               <Component id="txtchiPhi" max="32767" attributes="0"/>
                           </Group>
@@ -110,7 +110,7 @@
               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="226" max="32767" attributes="0"/>
+              <EmptySpace pref="223" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ThemBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="HuyBobtn" alignment="3" min="-2" max="-2" attributes="0"/>
