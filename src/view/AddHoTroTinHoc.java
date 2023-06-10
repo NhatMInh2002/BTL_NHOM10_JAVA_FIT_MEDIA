@@ -1,6 +1,7 @@
 package view;
 
 import Model.HoatDong;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -158,25 +159,118 @@ public class AddHoTroTinHoc extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenHoatDongActionPerformed
 
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String thoigian;
         HoatDong x = new HoatDong();          
         try {
+            String pattern = "^[a-zA-Z0-9]+$";
+            String pattern1 = "^[a-zA-Z\\sÀ-ỹ]+$";
+            //int maxLength = 30;
+            boolean isOk = true;
             if(dsHoatDongHoTroTinHoc.isEmpty()){
                 x.setMaHD("HD1");
             }
             else{
-                String ma = "HD" + (dsHoatDongHoTroTinHoc.size() + 1);
+                String ma = "HDTH" + (dsHoatDongHoTroTinHoc.size() + 1);
                 x.setMaHD(ma);
             }
-            x.setTenHD(txtTenHoatDong.getText());
-            x.setLoaiHD(txtLoaiHoatDong.getText());
-            x.setThoiGian(txtThoiGian.getText());
-            x.setDiaDiem(txtDiaDiem.getText());
-            x.setMoTa(txtMoTa.getText());
-            x.setSoThanhVien(Integer.parseInt(txtSoLuongThanhVien.getText()));
-            x.setKinhPhi(Double.parseDouble(txtChiPhi.getText()));
+            
+            if (txtTenHoatDong.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống tên hoạt động!");
+            isOk = false;
+            }
+            else
+            {
+                x.setTenHD(txtTenHoatDong.getText());
+            }
+            
+            if(isOk)
+            if (txtLoaiHoatDong.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống loại hoạt động!");
+            isOk = false;
+            }
+            else
+            {
+                 x.setLoaiHD(txtLoaiHoatDong.getText());
+            }
+            
+            if(isOk)
+            if (txtThoiGian.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống thời gian!");
+            isOk = false;
+            }
+            else
+            {
+                x.setThoiGian(txtThoiGian.getText());
+            }
+            
+            if(isOk)
+            if (txtDiaDiem.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống địa điểm!");
+            isOk = false;
+            }
+            else
+            {
+                x.setDiaDiem(txtDiaDiem.getText());
+            }
+            
+            if(isOk)
+            if (txtMoTa.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống mô tả!");
+            isOk = false;
+            }
+            else
+            {
+                x.setMoTa(txtMoTa.getText());
+            }
+            
+            if(isOk)
+            if (txtSoLuongThanhVien.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống số lượng thành viên!");
+            isOk = false;
+            }
+            else
+            if(!(txtSoLuongThanhVien.getText().matches(pattern))){
+                JOptionPane.showMessageDialog(rootPane, "Số lượng thành viên phải là số!");
+                isOk = false;
+            }         
+            
+            if(isOk)
+            {
+                x.setSoThanhVien(Integer.parseInt(txtSoLuongThanhVien.getText()));
+            }
+            
+            if(isOk)
+            if (txtChiPhi.getText().trim().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống chi phí!");
+            isOk = false;
+            }
+            else
+            if(!(txtChiPhi.getText().matches(pattern))){
+                JOptionPane.showMessageDialog(rootPane, "Chi phi phai la số!");
+                isOk = false;
+            }  
+            else{
+                x.setKinhPhi(Double.parseDouble(txtChiPhi.getText()));
+            }
             //z.tongQuy -= Double.parseDouble(txtChiPhi.getText());
-            home.addHDHoTroTinHoc(x);
+            if(isOk)
+            {
+                home.addHDHoTroTinHoc(x);
+                JOptionPane.showMessageDialog(rootPane, "Them thanh cong!");
+                //xoa thong tin sau khi them
+                txtTenHoatDong.setText("");
+                txtMoTa.setText("");
+                txtLoaiHoatDong.setText("");
+                txtSoLuongThanhVien.setText("");
+                txtThoiGian.setText("");
+                txtDiaDiem.setText("");
+                txtChiPhi.setText("");
+                
+            }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }           // TODO add your handling code here:
