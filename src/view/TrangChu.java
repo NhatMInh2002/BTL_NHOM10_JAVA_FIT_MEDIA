@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,6 +37,8 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
     private List<HoatDong> listHDHoTroTinHoc;
     private final DefaultTableModel modelHDHoTroTinHoc;
+    
+    DecimalFormat df = new DecimalFormat("#,###.00");
     
     public TrangChu() {
         initComponents();
@@ -1096,10 +1099,10 @@ public class TrangChu extends javax.swing.JFrame implements View {
         double TongChiPhi = 0;
         for (var x : listCSVC) {
             SoLuongCSVC += x.getSoLuong();
-            TongChiPhi += x.getChiPhi();
+            TongChiPhi += x.getChiPhi() * x.getSoLuong();
         }
         jTextField5.setText("" + SoLuongCSVC);
-        jTextField6.setText("" + TongChiPhi);
+        jTextField6.setText("" + df.format(TongChiPhi));
     }
 
     @Override
@@ -1125,7 +1128,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
             }
         }
         txtThanhVienHDDT.setText("" + SoThanhVien);
-        txtChiPhiHDDT.setText("" + TongChiPhi);
+        txtChiPhiHDDT.setText("" + df.format(TongChiPhi));
     }
 
     @Override

@@ -166,7 +166,13 @@ private TrangChu home;
             x.setMaCSVC(txtMa.getText());
             x.setTenCSVC(txtTen.getText());
             x.setTrangThai(txtTrangThai.getText());
+            if(txtSoLuong.getText().length() == 0){
+                throw new Exception("Số lượng không được để trống");
+            }
             x.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+            if(txtChiPhi.getText().length() == 0){
+                throw new Exception("Chi phí không được để trống");
+            }
             x.setChiPhi(Double.parseDouble(txtChiPhi.getText()));
             home.editCSVC(x, vitri);
         } catch (Exception e) {
