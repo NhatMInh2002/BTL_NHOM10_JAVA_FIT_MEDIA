@@ -115,6 +115,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
         themTT = new javax.swing.JButton();
         suaTT = new javax.swing.JButton();
         xoaTT = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -232,7 +233,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
                     .addComponent(btnThemTV)
                     .addComponent(btnXoaThanhVien)
                     .addComponent(btnSuaThanhVien))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Quản Lý Thành Viên", jPanel1);
@@ -319,7 +320,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
                     .addComponent(themCSVC)
                     .addComponent(suaCSVC)
                     .addComponent(xoaCSVC))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Quản Lý Cơ Sở Vật Chất", jPanel2);
@@ -478,7 +479,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(125, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -510,26 +511,30 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
         jLabel2.setText("Tổng chi phí :");
 
-        themTT.setText("Thêm");
+        themTT.setText("Thêm sự kiện");
         themTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 themTTActionPerformed(evt);
             }
         });
 
-        suaTT.setText("Sửa");
+        suaTT.setText("Sửa sự kiện");
         suaTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 suaTTActionPerformed(evt);
             }
         });
 
-        xoaTT.setText("Xoá");
+        xoaTT.setText("Xoá sự kiện");
         xoaTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 xoaTTActionPerformed(evt);
             }
         });
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("QUẢN Lí HOẠT ĐỘNG TRUYỀN THÔNG VÀ SỰ KIỆN CLB");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -552,31 +557,39 @@ public class TrangChu extends javax.swing.JFrame implements View {
                         .addComponent(txtTongChiPhiTT, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40))))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(345, 345, 345)
-                .addComponent(themTT)
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(themTT, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(128, 128, 128)
                 .addComponent(suaTT)
                 .addGap(132, 132, 132)
                 .addComponent(xoaTT)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {suaTT, themTT, xoaTT});
+
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
+                .addComponent(jLabel11)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtTongThanhVienTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(txtTongChiPhiTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(themTT)
                     .addComponent(xoaTT)
                     .addComponent(suaTT))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Quản Lý HĐ Truyền Thông", jPanel5);
@@ -802,6 +815,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private javax.swing.JButton jButton19;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
