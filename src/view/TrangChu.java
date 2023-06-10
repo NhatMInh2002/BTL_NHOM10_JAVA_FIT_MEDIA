@@ -721,8 +721,15 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         int vitri = tblHoTroTinHoc.getSelectedRow();
+        
+        int isCheckYesNo=JOptionPane.showConfirmDialog(null, 
+                "Bạn có thật sự muốn xóa?", "Select an Option...",JOptionPane.YES_NO_CANCEL_OPTION);
+        if(isCheckYesNo==0){
         listHDHoTroTinHoc.remove(vitri);
         showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
+        JOptionPane.showMessageDialog(rootPane, "Xóa thanh cong!");
+        }
+        
         luuFileHDHTTH(listHDHoTroTinHoc);
     }//GEN-LAST:event_jButton19ActionPerformed
 
