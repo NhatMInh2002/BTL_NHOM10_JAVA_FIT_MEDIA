@@ -4,7 +4,10 @@ import Model.HoatDong;
 import Model.Quy;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -80,7 +83,7 @@ public class EditTruyenThong extends javax.swing.JDialog {
         jLabel11.setText("THÊM MỚI NHÂN SỰ CHO HOẠT ĐỘNG");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("FORM SỬA ");
+        setTitle("Trang sửa thông tin sự kiện");
 
         jLabel1.setText("Tên sự kiện");
 
@@ -229,32 +232,31 @@ public class EditTruyenThong extends javax.swing.JDialog {
     private void SuaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SuaBtnActionPerformed
         // TODO add your handling code here:
         try {
-            String ten = txtSLTV.getText();
-            String soluong = txtSLTV.getText();
-            String diaDiem = txtdiaDiem.getText();
-            String thoiGian = txtthoiGian.getText();
-            String chiPhi = txtchiPhi.getText();
-            String moTa = txtmoTa.getText();
-            String danhGia = txtdanhGia.getText();
+            String ten = txttenSK.getText();
+            String ngay = txtthoiGian.getText();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date tg = null;
 
             boolean flag = true;
+            int maxLength = 30;
             if (ten.length() == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+                JOptionPane.showMessageDialog(rootPane, "Không được để trống Tên sự kiện");
                 flag = false;
-            } else if (soluong.length() == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            } else if (ten.length() > maxLength) {
+                JOptionPane.showMessageDialog(rootPane, "Tên sự kiện quá dài mời nhập lại!");
                 flag = false;
-            } else if (diaDiem.length() == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
+            } else if (ngay.trim().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Không được để trống thời gian diễn ra");
                 flag = false;
-            } else if (thoiGian.length() == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-                flag = false;
-            } else if (chiPhi.length() == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Phần này không được để trống");
-                flag = false;
+            } else if (ngay.trim().length() != 0) {
+                try {
+                    tg = dateFormat.parse(ngay);
+                } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Thời gian sự kiện không đúng format");
+                    flag = false;
+                }
             }
-            
+
             tt.setTenHD(txttenSK.getText());
             tt.setLoaiHD("Hoat dong truyen thong");
             tt.setDiaDiem(txtdiaDiem.getText());
@@ -263,12 +265,11 @@ public class EditTruyenThong extends javax.swing.JDialog {
             tt.setSoThanhVien(Integer.parseInt(txtSLTV.getText()));
             tt.setKinhPhi(Double.parseDouble(txtchiPhi.getText()));
             tt.setDanhGia(txtdanhGia.getText());
-            
-            
-            home.editHDTT(tt, vitri);
 
-            JOptionPane.showMessageDialog(rootPane, tt.getTenHD());
-
+            if (flag) {
+                home.editHDTT(tt, vitri);
+                JOptionPane.showMessageDialog(rootPane, "Đã update sự kiện thành công");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }

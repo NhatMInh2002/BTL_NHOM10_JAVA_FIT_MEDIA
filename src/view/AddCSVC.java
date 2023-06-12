@@ -2,6 +2,8 @@ package view;
 
 import Model.CoSoVC;
 import Model.Quy;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 public class AddCSVC extends javax.swing.JDialog {
@@ -9,13 +11,13 @@ public class AddCSVC extends javax.swing.JDialog {
 private TrangChu home;
     
     ArrayList<CoSoVC> dsCSVC = new ArrayList<CoSoVC>();
-    Quy z;
 
     public AddCSVC(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         home = (TrangChu) parent;
         this.setLocationRelativeTo(null);
+        layFileCSVC();
     }
 
 
@@ -131,19 +133,43 @@ private TrangChu home;
     private void btnHoanTatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoanTatActionPerformed
         CoSoVC x = new CoSoVC();          
         try {
+            int kt = 0;
             x.setMaCSVC(txtMaThietBi.getText());
+            for(var z : dsCSVC){
+                if(z.getMaCSVC().equalsIgnoreCase(x.getMaCSVC())){
+                    throw new Exception("Trùng mã thiết bị");
+                }
+            }
             x.setTenCSVC(txtTenThietBi.getText());
             x.setTrangThai(txtTrangThai.getText());
+            if(txtSoLuong.getText().length() == 0){
+                throw new Exception("Số lượng không được để trống");
+            }
             x.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+            if(txtChiPhi.getText().length() == 0){
+                throw new Exception("Chi phí không được để trống");
+            }
             x.setChiPhi(Double.parseDouble(txtChiPhi.getText()));
-            //z.tongQuy -= Double.parseDouble(txtChiPhi.getText());
             home.addCSVC(x);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-
     }//GEN-LAST:event_btnHoanTatActionPerformed
 
+    public void layFileCSVC() {
+        FileInputStream fi;
+        ObjectInputStream in;
+        try {
+            fi = new FileInputStream("csvc.txt");
+            in = new ObjectInputStream(fi);
+            dsCSVC = (ArrayList<CoSoVC>) in.readObject();
+            fi.close();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

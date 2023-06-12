@@ -13,7 +13,7 @@ private TrangChu home;
 
     ArrayList<CoSoVC> dsCSVC = new ArrayList<CoSoVC>();
     CoSoVC x;
-    Quy z;
+    String ma_default;
     
     static int vitri;
     
@@ -30,6 +30,7 @@ private TrangChu home;
         layFileCSVC();
         x = dsCSVC.get(vitri);
         txtMa.setText(x.getMaCSVC());
+        ma_default = x.getMaCSVC();
         txtTen.setText(x.getTenCSVC());
         txtTrangThai.setText(x.getTrangThai());
         txtSoLuong.setText("" + x.getSoLuong());
@@ -164,9 +165,22 @@ private TrangChu home;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             x.setMaCSVC(txtMa.getText());
+            for(var z : dsCSVC){
+                if(z.getMaCSVC().equalsIgnoreCase(ma_default))
+                    continue;
+                if(z.getMaCSVC().equalsIgnoreCase(x.getMaCSVC())){
+                    throw new Exception("Trùng mã thiết bị");
+                }
+            }
             x.setTenCSVC(txtTen.getText());
             x.setTrangThai(txtTrangThai.getText());
+            if(txtSoLuong.getText().length() == 0){
+                throw new Exception("Số lượng không được để trống");
+            }
             x.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+            if(txtChiPhi.getText().length() == 0){
+                throw new Exception("Chi phí không được để trống");
+            }
             x.setChiPhi(Double.parseDouble(txtChiPhi.getText()));
             home.editCSVC(x, vitri);
         } catch (Exception e) {

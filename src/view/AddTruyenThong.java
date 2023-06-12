@@ -2,7 +2,11 @@ package view;
 
 import Model.HoatDong;
 import Model.Quy;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class AddTruyenThong extends javax.swing.JDialog {
@@ -92,10 +96,6 @@ public class AddTruyenThong extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(28, 28, 28))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(175, 175, 175)
@@ -108,6 +108,7 @@ public class AddTruyenThong extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(HuyBobtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(179, 179, 179))
+            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -148,7 +149,7 @@ public class AddTruyenThong extends javax.swing.JDialog {
                 .addComponent(jLabel13)
                 .addGap(52, 52, 52)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ThemBtn)
                     .addComponent(HuyBobtn))
@@ -203,12 +204,14 @@ public class AddTruyenThong extends javax.swing.JDialog {
         // TODO add your handling code here:
         HoatDong tt = new HoatDong();
         try {
-            if (dsHDTT.isEmpty()) {
-                tt.setMaHD("HD1");
-            } else {
+            if (dsHDTT.isEmpty()) {tt.setMaHD("HD1");} else {
                 String ma = "HD" + (dsHDTT.size() + 1);
                 tt.setMaHD(ma);
             }
+            String ten = txttenSK.getText();
+            String ngay = txtthoiGian.getText();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date tg = null;         
             tt.setTenHD(txttenSK.getText());
             tt.setLoaiHD("Hoat dong truyen thong");
             tt.setDiaDiem(txtdiaDiem.getText());
@@ -217,12 +220,30 @@ public class AddTruyenThong extends javax.swing.JDialog {
             tt.setSoThanhVien(Integer.parseInt(txtSL.getText()));
             tt.setKinhPhi(Double.parseDouble(txtchiPhi.getText()));
             tt.setDanhGia(txtDG.getText());
-
-            //Them vao danh sach hoat dong truyen thong
-            home.addTT(tt);
-            // Hiển thị thông báo thêm thành công
-            JOptionPane.showMessageDialog(this, "Thêm thành công.");
-
+            boolean flag = true;
+            int maxLength = 50;
+            
+            if (ten.length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Không được để trống Tên sự kiện");
+                flag = false;
+            } else if (ten.length() > maxLength) {
+                JOptionPane.showMessageDialog(rootPane, "Tên sự kiện quá dài mời nhập lại!");
+                flag = false;
+            } else if (ngay.trim().length() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Không được để trống thời gian diễn ra");
+                flag = false;
+            } else if (ngay.trim().length() != 0) {
+                try {
+                    tg = dateFormat.parse(ngay);
+                } catch (ParseException ex) {
+                    JOptionPane.showMessageDialog(rootPane, "Thời gian sự kiện không đúng format");
+                    flag = false;
+                }
+            }
+            if (flag) {
+                home.addTT(tt);
+                JOptionPane.showMessageDialog(this, "Thêm thành công sự kiện mới.");
+            }
             // Reset các ô dữ liệu về trống
             txttenSK.setText("");
             txtdiaDiem.setText("");
@@ -231,8 +252,9 @@ public class AddTruyenThong extends javax.swing.JDialog {
             txtSL.setText("");
             txtchiPhi.setText("");
             txtDG.setText("");
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,"Lỗi do: " + e.getMessage());
         }
     }//GEN-LAST:event_ThemBtnActionPerformed
 

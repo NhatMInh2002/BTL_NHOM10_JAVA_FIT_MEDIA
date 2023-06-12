@@ -175,7 +175,13 @@ public class EditDaoTao extends javax.swing.JDialog {
             x.setDiaDiem(txtDiaDiem.getText());
             x.setThoiGian(txtThoiGian.getText());
             x.setMoTa(txtMoTa.getText());
+            if(txtSoLuongTV.getText().length() == 0){
+                throw new Exception("Số lượng thành viên không được để trống");
+            }
             x.setSoThanhVien(Integer.parseInt(txtSoLuongTV.getText()));
+            if(txtKinhPhi.getText().length() == 0){
+                throw new Exception("Kinh phí không được để trống");
+            }
             x.setKinhPhi(Double.parseDouble(txtKinhPhi.getText()));
             //z.tongQuy -= Double.parseDouble(txtKinhPhi.getText());
             home.editHD(x, vitri);

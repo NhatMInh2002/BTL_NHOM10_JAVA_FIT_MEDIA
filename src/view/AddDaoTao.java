@@ -10,7 +10,6 @@ public class AddDaoTao extends javax.swing.JDialog {
     private TrangChu home;
 
     ArrayList<HoatDong> dsHDDT = new ArrayList<HoatDong>();
-    Quy z;
     
     public AddDaoTao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -153,7 +152,13 @@ public class AddDaoTao extends javax.swing.JDialog {
             x.setDiaDiem(txtDiaDiem.getText());
             x.setThoiGian(txtThoiGian.getText());
             x.setMoTa(txtMoTa.getText());
+            if(txtSoLuongTV.getText().length() == 0){
+                throw new Exception("Số lượng thành viên không được để trống");
+            }
             x.setSoThanhVien(Integer.parseInt(txtSoLuongTV.getText()));
+            if(txtKinhPhi.getText().length() == 0){
+                throw new Exception("Kinh phí không được để trống");
+            }
             x.setKinhPhi(Double.parseDouble(txtKinhPhi.getText()));
             //z.tongQuy -= Double.parseDouble(txtKinhPhi.getText());
             home.addHD(x);

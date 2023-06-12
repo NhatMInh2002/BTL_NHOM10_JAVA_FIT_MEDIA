@@ -70,7 +70,7 @@ public class HoatDong implements Serializable{
         this.maHD = maHD;
     }
 
-    public int getSoThanhVien() {
+    public int getSoThanhVien(){
         return soThanhVien;
     }
 
@@ -83,19 +83,23 @@ public class HoatDong implements Serializable{
         this.loaiHD = loaiHD;
     }
 
-    public void setThoiGian(String thoiGian) {
+    public void setThoiGian(String thoiGian) throws Exception{
+        if(thoiGian.trim().length() == 0) throw new Exception("Thoi gian khong duoc de trong");
         this.thoiGian = thoiGian;
     }
 
-    public void setSoThanhVien(int soThanhVien) {
+    public void setSoThanhVien(int soThanhVien) throws Exception{
+        if(soThanhVien <= 0) throw new Exception("Số thành viên phải lớn hơn 0");
         this.soThanhVien = soThanhVien;
     }
 
-    public void setKinhPhi(double kinhPhi) {
+    public void setKinhPhi(double kinhPhi) throws Exception{
+        if(kinhPhi < 0) throw new Exception("Kinh phi không nhỏ hơn 0");
         this.kinhPhi = kinhPhi;
     }
 
-    public void setDiaDiem(String diaDiem) {
+    public void setDiaDiem(String diaDiem) throws Exception{
+        if(diaDiem.trim().length() == 0) throw new Exception("Dia diem khong duoc de trong");
         this.diaDiem = diaDiem;
     }
 
