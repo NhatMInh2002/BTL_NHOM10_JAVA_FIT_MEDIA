@@ -165,8 +165,8 @@ public class AddHoTroTinHoc extends javax.swing.JDialog {
         String thoigian;
         HoatDong x = new HoatDong();          
         try {
-            String pattern = "^[a-zA-Z0-9]+$";
-            String pattern1 = "^[a-zA-Z\\sÀ-ỹ]+$";
+            String pattern = "^\\d{2}[-|/]\\d{2}[-|/]\\d{4}$";
+            String partern2 =".*[0-9].*"; 
             //int maxLength = 30;
             boolean isOk = true;
             if(dsHoatDongHoTroTinHoc.isEmpty()){
@@ -202,6 +202,12 @@ public class AddHoTroTinHoc extends javax.swing.JDialog {
             isOk = false;
             }
             else
+                if(!txtThoiGian.getText().matches(pattern))
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Vui lòng ghi đúng thời gian!(vi du: 10/03/2022)");
+                    isOk = false;
+                }
+            else
             {
                 x.setThoiGian(txtThoiGian.getText());
             }
@@ -232,7 +238,7 @@ public class AddHoTroTinHoc extends javax.swing.JDialog {
             isOk = false;
             }
             else
-            if(!(txtSoLuongThanhVien.getText().matches(pattern))){
+            if(!(txtSoLuongThanhVien.getText().matches(partern2))){
                 JOptionPane.showMessageDialog(rootPane, "Số lượng thành viên phải là số!");
                 isOk = false;
             }         
@@ -248,7 +254,7 @@ public class AddHoTroTinHoc extends javax.swing.JDialog {
             isOk = false;
             }
             else
-            if(!(txtChiPhi.getText().matches(pattern))){
+            if(!(txtChiPhi.getText().matches(partern2))){
                 JOptionPane.showMessageDialog(rootPane, "Chi phi phai la số!");
                 isOk = false;
             }  

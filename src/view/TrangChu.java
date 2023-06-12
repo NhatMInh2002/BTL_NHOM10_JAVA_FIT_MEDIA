@@ -670,8 +670,8 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         int vitri = tblHoTroTinHoc.getSelectedRow();
-        if(listCSVC.size() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Hãy nhập thêm thiết bị");
+        if(listHDHoTroTinHoc.isEmpty()){
+            JOptionPane.showMessageDialog(rootPane, "Hãy nhập 1 dong trước");
         }
         else if(vitri == -1){
             JOptionPane.showMessageDialog(rootPane, "Hãy chọn 1 dòng trước");
@@ -679,6 +679,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
         else{
             new EditHoTroTinHoc(this, rootPaneCheckingEnabled, vitri).setVisible(true);
         }
+        
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void suaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaTTActionPerformed

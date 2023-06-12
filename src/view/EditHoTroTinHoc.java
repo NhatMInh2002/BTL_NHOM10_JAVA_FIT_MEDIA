@@ -10,7 +10,6 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
 
     ArrayList<HoatDong> dsHoatDongHoTroTinHoc = new ArrayList<HoatDong>();
     HoatDong x;
-    Quy z;
     static int vitri;
     
     public EditHoTroTinHoc(java.awt.Frame parent, boolean modal,int vt) {
@@ -155,6 +154,9 @@ public class EditHoTroTinHoc extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      try {
+            
+         
+            
                x.setTenHD(txtTenHoatDong.getText());
                x.setLoaiHD(txtLoaiHoatDong.getText());
                x.setThoiGian(txtThoiGian.getText());
