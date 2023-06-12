@@ -204,18 +204,14 @@ public class AddTruyenThong extends javax.swing.JDialog {
         // TODO add your handling code here:
         HoatDong tt = new HoatDong();
         try {
-            if (dsHDTT.isEmpty()) {
-                tt.setMaHD("HD1");
-            } else {
+            if (dsHDTT.isEmpty()) {tt.setMaHD("HD1");} else {
                 String ma = "HD" + (dsHDTT.size() + 1);
                 tt.setMaHD(ma);
             }
             String ten = txttenSK.getText();
             String ngay = txtthoiGian.getText();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date tg = null;
-            
-            
+            Date tg = null;         
             tt.setTenHD(txttenSK.getText());
             tt.setLoaiHD("Hoat dong truyen thong");
             tt.setDiaDiem(txtdiaDiem.getText());
@@ -226,6 +222,7 @@ public class AddTruyenThong extends javax.swing.JDialog {
             tt.setDanhGia(txtDG.getText());
             boolean flag = true;
             int maxLength = 50;
+            
             if (ten.length() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Không được để trống Tên sự kiện");
                 flag = false;
@@ -244,12 +241,9 @@ public class AddTruyenThong extends javax.swing.JDialog {
                 }
             }
             if (flag) {
-                //Them vao danh sach hoat dong truyen thong
                 home.addTT(tt);
-                // Hiển thị thông báo thêm thành công
                 JOptionPane.showMessageDialog(this, "Thêm thành công sự kiện mới.");
             }
-
             // Reset các ô dữ liệu về trống
             txttenSK.setText("");
             txtdiaDiem.setText("");

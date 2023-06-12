@@ -27,7 +27,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private List<HoatDong> listHDTT;
 
     private controller.ControllerImp controller;
-    
+
     private int indexThanhVien;
 
     private final DefaultTableModel modelTV;
@@ -37,9 +37,9 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
     private List<HoatDong> listHDHoTroTinHoc;
     private final DefaultTableModel modelHDHoTroTinHoc;
-    
+
     DecimalFormat df = new DecimalFormat("#,###.00");
-    
+
     public TrangChu() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -50,11 +50,11 @@ public class TrangChu extends javax.swing.JFrame implements View {
         listCSVC = new ArrayList<>();
         listHD = new ArrayList<>();
         listHDTT = new ArrayList<>();
-        listHDHoTroTinHoc= new ArrayList<>();
+        listHDHoTroTinHoc = new ArrayList<>();
         modelCSVC = (DefaultTableModel) tblCSVC.getModel();
         modelHDDT = (DefaultTableModel) tblHDDT.getModel();
         modelHDTT = (DefaultTableModel) tblTT.getModel();
-        modelHDHoTroTinHoc= (DefaultTableModel) tblHoTroTinHoc.getModel();
+        modelHDHoTroTinHoc = (DefaultTableModel) tblHoTroTinHoc.getModel();
         loadDataFromTblHoTroTinHoc();
     }
 
@@ -668,7 +668,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         int vitri = tblHoTroTinHoc.getSelectedRow();
-        new EditHoTroTinHoc(this, rootPaneCheckingEnabled,vitri).setVisible(true);
+        new EditHoTroTinHoc(this, rootPaneCheckingEnabled, vitri).setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void suaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaTTActionPerformed
@@ -729,23 +729,29 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private void xoaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaTTActionPerformed
         // TODO add your handling code here:
         int vitri = tblTT.getSelectedRow();
-        listHDTT.remove(vitri);
-        showDataTruyenThong(listHDTT, modelHDTT);
-        luuFileHDTT(listHDTT);
+        if (vitri == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn một dòng rồi ấn nút xoá !");
+        } else if (listHDTT.size() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Không có dữ liệu để xoá!");
+        } else {
+            listHDTT.remove(vitri);
+            showDataTruyenThong(listHDTT, modelHDTT);
+            luuFileHDTT(listHDTT);
+        }
     }//GEN-LAST:event_xoaTTActionPerformed
-//luong
+
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         int vitri = tblHoTroTinHoc.getSelectedRow();
-        
-        int isCheckYesNo=JOptionPane.showConfirmDialog(null, 
-                "Bạn có thật sự muốn xóa?", "Select an Option...",JOptionPane.YES_NO_CANCEL_OPTION);
-        if(isCheckYesNo==0){
-        listHDHoTroTinHoc.remove(vitri);
-        showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
-        JOptionPane.showMessageDialog(rootPane, "Xóa thanh cong!");
+
+        int isCheckYesNo = JOptionPane.showConfirmDialog(null,
+                "Bạn có thật sự muốn xóa?", "Select an Option...", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (isCheckYesNo == 0) {
+            listHDHoTroTinHoc.remove(vitri);
+            showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
+            JOptionPane.showMessageDialog(rootPane, "Xóa thanh cong!");
         }
-        
+
         luuFileHDHTTH(listHDHoTroTinHoc);
     }//GEN-LAST:event_jButton19ActionPerformed
 
@@ -764,7 +770,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
             JOptionPane.showMessageDialog(rootPane, "Hãy nhập mã thành viên cần tìm!");
         } else if (ktra == 0) {
             JOptionPane.showMessageDialog(rootPane,
-                "Không tồn tại mã thành viên này trong danh sách!");
+                    "Không tồn tại mã thành viên này trong danh sách!");
         } else {
             TimKiemTV editTV = new TimKiemTV(this, rootPaneCheckingEnabled);
             for (ThanhVien x : listTVTimKiem) {
@@ -870,19 +876,19 @@ public class TrangChu extends javax.swing.JFrame implements View {
     // End of variables declaration//GEN-END:variables
 
     //luong
-    public void addHDHoTroTinHoc(HoatDong hd){
+    public void addHDHoTroTinHoc(HoatDong hd) {
         layFileHDHT();
         listHDHoTroTinHoc.add(hd);
         showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
         luuFileHDHT(listHDHoTroTinHoc);
     }
-    public void editHDHoTroTinHoc(HoatDong hd, int vt){
+
+    public void editHDHoTroTinHoc(HoatDong hd, int vt) {
         listHDHoTroTinHoc.set(vt, hd);
         showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
         luuFileHDHT(listHDHoTroTinHoc);
     }
-    
-    
+
     private void showDataThanhVien() {
         modelTV.setRowCount(0);
         for (ThanhVien tv : listTV) {
@@ -892,7 +898,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
             });
         }
         int tong = 0;
-        for(ThanhVien x : listTV){
+        for (ThanhVien x : listTV) {
             tong += 1;
         }
         txtTongThanhVien.setText(String.valueOf(tong));
@@ -927,24 +933,24 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
     void updateThanhVien(ThanhVien tv) {
         ThanhVien thanhVienDaChon = listTV.get(indexThanhVien);
-        
+
         // Gán giá trị từ đối tượng tv vào thành viên được chọn
-            thanhVienDaChon.setMaTV(tv.getMaTV());
-            thanhVienDaChon.setTenTV(tv.getTenTV());
-            thanhVienDaChon.setKhoa(tv.getKhoa());
-            thanhVienDaChon.setChuyenNghanh(tv.getChuyenNghanh());
-            thanhVienDaChon.setBan(tv.getBan());
-            thanhVienDaChon.setNgaySinh(tv.getNgaySinh());
-            thanhVienDaChon.setGioiTinh(tv.getGioiTinh());
-            thanhVienDaChon.setEmail(tv.getEmail());
-            thanhVienDaChon.setSdt(tv.getSdt());
-            thanhVienDaChon.setChucDanh(tv.getChucDanh());
-            
+        thanhVienDaChon.setMaTV(tv.getMaTV());
+        thanhVienDaChon.setTenTV(tv.getTenTV());
+        thanhVienDaChon.setKhoa(tv.getKhoa());
+        thanhVienDaChon.setChuyenNghanh(tv.getChuyenNghanh());
+        thanhVienDaChon.setBan(tv.getBan());
+        thanhVienDaChon.setNgaySinh(tv.getNgaySinh());
+        thanhVienDaChon.setGioiTinh(tv.getGioiTinh());
+        thanhVienDaChon.setEmail(tv.getEmail());
+        thanhVienDaChon.setSdt(tv.getSdt());
+        thanhVienDaChon.setChucDanh(tv.getChucDanh());
+
         // Cập nhật lại thành viên trong danh sách
-            listTV.set(indexThanhVien, thanhVienDaChon);
-            controller.writeDataToFile(listTV, "TV.txt");
-            showDataThanhVien();
-        
+        listTV.set(indexThanhVien, thanhVienDaChon);
+        controller.writeDataToFile(listTV, "TV.txt");
+        showDataThanhVien();
+
     }
 
     public void editCSVC(CoSoVC cs, int vt) {
@@ -972,40 +978,25 @@ public class TrangChu extends javax.swing.JFrame implements View {
     }
 
     //luong
-    public void layFileHDHT(){
-        FileInputStream fi;
-        ObjectInputStream in;
-        try{
-            fi = new FileInputStream("hotrotinhoc.txt");
-            in = new ObjectInputStream(fi);
-            listHDHoTroTinHoc = (ArrayList<HoatDong>)in.readObject();
-            fi.close();
-            in.close();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    
-     public void luuFileHDHT(List l){
+    public void luuFileHDHT(List l) {
         FileOutputStream fo;
         ObjectOutputStream out;
-        try{
+        try {
             fo = new FileOutputStream("hotrotinhoc.txt");
             out = new ObjectOutputStream(fo);
             out.writeObject(l);
             out.close();
             fo.close();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     private void loadDataFromTblHoTroTinHoc() {
         layFileHDHT();
         showDataHDHT(listHDHoTroTinHoc, modelHDHoTroTinHoc);
     }
-      
+
     public void layFileCSVC() {
         FileInputStream fi;
         ObjectInputStream in;
@@ -1041,6 +1032,20 @@ public class TrangChu extends javax.swing.JFrame implements View {
             fi = new FileInputStream("hdTruyenThong.txt");
             in = new ObjectInputStream(fi);
             listHDTT = (ArrayList<HoatDong>) in.readObject();
+            fi.close();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void layFileHDHT() {
+        FileInputStream fi;
+        ObjectInputStream in;
+        try {
+            fi = new FileInputStream("hotrotinhoc.txt");
+            in = new ObjectInputStream(fi);
+            listHDHoTroTinHoc = (ArrayList<HoatDong>) in.readObject();
             fi.close();
             in.close();
         } catch (Exception e) {
@@ -1103,7 +1108,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
             e.printStackTrace();
         }
     }
-    
+
     @Override
     public <T> void showDataCSVC(List<T> list, DefaultTableModel model) {
         model.getDataVector().removeAllElements();
@@ -1187,18 +1192,18 @@ public class TrangChu extends javax.swing.JFrame implements View {
             if (t instanceof HoatDong) {
                 HoatDong hd = (HoatDong) t;
                 model.addRow(new Object[]{
-                    hd.getTenHD(), hd.getLoaiHD(), hd.getThoiGian(), hd.getDiaDiem(), hd.getMoTa(),hd.getSoThanhVien(),hd.getKinhPhi()
+                    hd.getTenHD(), hd.getLoaiHD(), hd.getThoiGian(), hd.getDiaDiem(), hd.getMoTa(), hd.getSoThanhVien(), hd.getKinhPhi()
                 });
             }
         }
         int SoLuonghd = 0;
         double TongChiPhi = 0;
-        for(var x : listHDHoTroTinHoc){
+        for (var x : listHDHoTroTinHoc) {
             SoLuonghd += x.getSoThanhVien();
             TongChiPhi += x.getKinhPhi();
         }
         jTextField7.setText("" + SoLuonghd);
         jTextField8.setText("" + TongChiPhi);
     }
-    
+
 }
