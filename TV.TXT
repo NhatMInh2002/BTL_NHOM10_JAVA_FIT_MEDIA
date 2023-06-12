@@ -1,3 +1,2 @@
 2020607362,Nguyễn Hoàng Phúc,K16,CNTT,Ban biên tập,10/11/2002,Nam,hoangvanhiep12bbm@gmail.com,0889698227,Thành Viên
 2020606009,Hoàng Đức Huy,K16,CNTT,Ban kỹ thuật,5/8/2002,Nam,hoangduchuy@gmail.com,0562819628,Trưởng Ban
-2020607892,Trần Anh Khá,K16,KHMT,Ban kỹ thuật,7/8/2002,Nam,trananhkha@gmail.com,0879354999,Trưởng Ban

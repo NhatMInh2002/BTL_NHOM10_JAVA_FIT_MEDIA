@@ -612,24 +612,18 @@ public class TrangChu extends javax.swing.JFrame implements View {
     }// </editor-fold>//GEN-END:initComponents
 
     private void themCSVCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themCSVCActionPerformed
-        // TODO add your handling code here:
         new AddCSVC(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_themCSVCActionPerformed
 
     private void btnThemTVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTVActionPerformed
-        // TODO add your handling code here:
-
         new AddThanhVien(this, rootPaneCheckingEnabled).setVisible(true);
-
     }//GEN-LAST:event_btnThemTVActionPerformed
 
     private void themDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themDTActionPerformed
-        // TODO add your handling code here:
         new AddDaoTao(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_themDTActionPerformed
 
     private void addHDHTTHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addHDHTTHActionPerformed
-        // TODO add your handling code here:
         new AddHoTroTinHoc(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_addHDHTTHActionPerformed
 
@@ -662,13 +656,29 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
     private void suaDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaDTActionPerformed
         int vitri = tblHDDT.getSelectedRow();
-        new EditDaoTao(this, rootPaneCheckingEnabled, vitri).setVisible(true);
+        if(listHD.size() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Hãy nhập thêm hoạt động");
+        }
+        else if(vitri == -1){
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn 1 dòng trước");
+        }
+        else{
+            new EditDaoTao(this, rootPaneCheckingEnabled, vitri).setVisible(true);
+        }
     }//GEN-LAST:event_suaDTActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         int vitri = tblHoTroTinHoc.getSelectedRow();
-        new EditHoTroTinHoc(this, rootPaneCheckingEnabled, vitri).setVisible(true);
+        if(listCSVC.size() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Hãy nhập thêm thiết bị");
+        }
+        else if(vitri == -1){
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn 1 dòng trước");
+        }
+        else{
+            new EditHoTroTinHoc(this, rootPaneCheckingEnabled, vitri).setVisible(true);
+        }
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void suaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaTTActionPerformed
@@ -714,9 +724,17 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
     private void xoaCSVCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaCSVCActionPerformed
         int vitri = tblCSVC.getSelectedRow();
-        listCSVC.remove(vitri);
-        showDataCSVC(listCSVC, modelCSVC);
-        luuFile(listCSVC);
+        if(vitri == -1){
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn một dòng rồi ấn nút xoá !");
+        }
+        else if(listCSVC.size() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Không có dữ liệu để xóa");
+        }
+        else{
+            listCSVC.remove(vitri);
+            showDataCSVC(listCSVC, modelCSVC);
+            luuFile(listCSVC);
+        }
     }//GEN-LAST:event_xoaCSVCActionPerformed
 
     private void xoaDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaDTActionPerformed

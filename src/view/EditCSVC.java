@@ -13,7 +13,7 @@ private TrangChu home;
 
     ArrayList<CoSoVC> dsCSVC = new ArrayList<CoSoVC>();
     CoSoVC x;
-    Quy z;
+    String ma_default;
     
     static int vitri;
     
@@ -30,6 +30,7 @@ private TrangChu home;
         layFileCSVC();
         x = dsCSVC.get(vitri);
         txtMa.setText(x.getMaCSVC());
+        ma_default = x.getMaCSVC();
         txtTen.setText(x.getTenCSVC());
         txtTrangThai.setText(x.getTrangThai());
         txtSoLuong.setText("" + x.getSoLuong());
@@ -164,6 +165,13 @@ private TrangChu home;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             x.setMaCSVC(txtMa.getText());
+            for(var z : dsCSVC){
+                if(z.getMaCSVC().equalsIgnoreCase(ma_default))
+                    continue;
+                if(z.getMaCSVC().equalsIgnoreCase(x.getMaCSVC())){
+                    throw new Exception("Trùng mã thiết bị");
+                }
+            }
             x.setTenCSVC(txtTen.getText());
             x.setTrangThai(txtTrangThai.getText());
             if(txtSoLuong.getText().length() == 0){

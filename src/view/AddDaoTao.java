@@ -10,7 +10,6 @@ public class AddDaoTao extends javax.swing.JDialog {
     private TrangChu home;
 
     ArrayList<HoatDong> dsHDDT = new ArrayList<HoatDong>();
-    Quy z;
     
     public AddDaoTao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

@@ -67,7 +67,8 @@ public class CoSoVC implements Serializable{
         this.soLuong = soLuong;
     }
 
-    public void setChiPhi(double ChiPhi) {
+    public void setChiPhi(double ChiPhi) throws Exception{
+        if(ChiPhi < 0) throw new Exception("Chi phi khong duoc nho hon 0");
         this.ChiPhi = ChiPhi;
     }
 }

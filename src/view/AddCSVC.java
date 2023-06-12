@@ -11,7 +11,6 @@ public class AddCSVC extends javax.swing.JDialog {
 private TrangChu home;
     
     ArrayList<CoSoVC> dsCSVC = new ArrayList<CoSoVC>();
-    Quy z;
 
     public AddCSVC(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -151,7 +150,6 @@ private TrangChu home;
                 throw new Exception("Chi phí không được để trống");
             }
             x.setChiPhi(Double.parseDouble(txtChiPhi.getText()));
-            //z.tongQuy -= Double.parseDouble(txtChiPhi.getText());
             home.addCSVC(x);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

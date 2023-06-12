@@ -70,7 +70,7 @@ public class HoatDong implements Serializable{
         this.maHD = maHD;
     }
 
-    public int getSoThanhVien() {
+    public int getSoThanhVien(){
         return soThanhVien;
     }
 
