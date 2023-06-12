@@ -651,7 +651,15 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
     private void suaCSVCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaCSVCActionPerformed
         int vitri = tblCSVC.getSelectedRow();
-        new EditCSVC(this, rootPaneCheckingEnabled, vitri).setVisible(true);
+        if(listCSVC.size() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Hãy nhập thêm thiết bị");
+        }
+        else if(vitri == -1){
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn 1 dòng trước");
+        }
+        else{
+            new EditCSVC(this, rootPaneCheckingEnabled, vitri).setVisible(true);
+        }
     }//GEN-LAST:event_suaCSVCActionPerformed
 
     private void suaDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaDTActionPerformed
@@ -670,15 +678,7 @@ public class TrangChu extends javax.swing.JFrame implements View {
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
         int vitri = tblHoTroTinHoc.getSelectedRow();
-        if(listCSVC.size() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Hãy nhập thêm thiết bị");
-        }
-        else if(vitri == -1){
-            JOptionPane.showMessageDialog(rootPane, "Hãy chọn 1 dòng trước");
-        }
-        else{
-            new EditHoTroTinHoc(this, rootPaneCheckingEnabled, vitri).setVisible(true);
-        }
+        new EditHoTroTinHoc(this, rootPaneCheckingEnabled, vitri).setVisible(true);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void suaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suaTTActionPerformed
@@ -739,9 +739,17 @@ public class TrangChu extends javax.swing.JFrame implements View {
 
     private void xoaDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaDTActionPerformed
         int vitri = tblHDDT.getSelectedRow();
-        listHD.remove(vitri);
-        showDataHDDT(listHD, modelHDDT);
-        luuFileHD(listHD);
+        if(vitri == -1){
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn một dòng rồi ấn nút xoá !");
+        }
+        else if(listHD.size() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Không có dữ liệu để xóa");
+        }
+        else{
+            listHD.remove(vitri);
+            showDataHDDT(listHD, modelHDDT);
+            luuFileHD(listHD);
+        }
     }//GEN-LAST:event_xoaDTActionPerformed
 
     private void xoaTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaTTActionPerformed
